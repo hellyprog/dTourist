@@ -3,14 +3,18 @@ pragma experimental ABIEncoderV2;
 pragma solidity >=0.4.22 <0.9.0;
 
 contract Customs {
-    mapping (address => Trip[]) public personToHistory;
-    mapping (address => string) public addressToCountry;
+    struct Trip {
+        address from;
+        address to;
+        uint256 date;
+        bool success;
+    }
+    
+    mapping(address => Trip[]) public personToHistory;
+    mapping(address => string) public addressToCountry;
 
     constructor() {
-        addressToCountry[address(0x123)] = "Ukraine";
-        addressToCountry[address(0x124)] = "Poland";
-        addressToCountry[address(0x125)] = "USA";
-        addressToCountry[address(0x126)] = "Australia";
+        initializeCountryMapping();
     }
 
     function crossBorder(address _from, address _to, uint256 _date) public {
@@ -21,14 +25,14 @@ contract Customs {
       return personToHistory[userAddress];
     }
 
+    function initializeCountryMapping() private {
+        addressToCountry[address(0x123)] = "Ukraine";   
+        addressToCountry[address(0x124)] = "Poland";
+        addressToCountry[address(0x125)] = "USA";
+        addressToCountry[address(0x126)] = "Australia";
+    }
+
     /*function _isCrossingAllowed(address _user) private pure returns (bool) {
         return true;
     }*/
-
-    struct Trip {
-        address from;
-        address to;
-        uint256 date;
-        bool success;
-    }
 }
