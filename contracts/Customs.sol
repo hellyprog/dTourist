@@ -13,7 +13,7 @@ contract Customs {
     mapping(address => Trip[]) public personToHistory;
     mapping(address => string) public addressToCountry;
 
-    constructor() {
+    constructor() public {
         initializeCountryMapping();
     }
 
