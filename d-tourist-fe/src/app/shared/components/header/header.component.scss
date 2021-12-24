@@ -1,14 +1,14 @@
-.header {
+:host {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
 
-  &__title {
+  .title {
     font-size: 2rem;
   }
 
-  &__connect-button {
+  .connect-button {
     cursor: pointer;
   }
 }

@@ -1,4 +1,6 @@
-.main-container {
+:host {
   display: flex;
+  height: inherit;
+  width: inherit;
   flex-direction: column;
 }
