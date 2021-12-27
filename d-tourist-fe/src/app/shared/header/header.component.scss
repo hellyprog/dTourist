@@ -9,6 +9,16 @@
   width: 100%;
   height: $header-height;
   z-index: 1000;
+  background-color: $white;
+
+  &.transparent {
+    background-color: transparent;
+
+    .title__link,
+    .connect-button {
+      color: $white;
+    }
+  }
 
   .title {
     font-size: 2rem;
@@ -17,7 +27,7 @@
     padding: 15px;
 
     &__link {
-      color: $light-text;
+      color: $ultramarine;
       text-decoration: none;
     }
   }
@@ -28,7 +38,7 @@
     display: flex;
     align-items: center;
     text-transform: uppercase;
-    color: $light-text;
+    color: $ultramarine;
 
     &:hover {
       mat-icon {
