@@ -8,6 +8,7 @@
   align-items: center;
   width: 100%;
   height: $header-height;
+  z-index: 1000;
 
   .title {
     font-size: 2rem;
@@ -16,7 +17,7 @@
     padding: 15px;
 
     &__link {
-      color: $ultramarine;
+      color: $light-text;
       text-decoration: none;
     }
   }
@@ -27,6 +28,7 @@
     display: flex;
     align-items: center;
     text-transform: uppercase;
+    color: $light-text;
 
     &:hover {
       mat-icon {

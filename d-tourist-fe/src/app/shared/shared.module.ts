@@ -3,13 +3,11 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
   declarations: [
-    HeaderComponent,
-    FooterComponent
+    HeaderComponent
   ],
   imports: [
     CommonModule,
@@ -17,8 +15,7 @@ import { FooterComponent } from './footer/footer.component';
     MatIconModule
   ],
   exports: [
-    HeaderComponent,
-    FooterComponent
+    HeaderComponent
   ]
 })
 export class SharedModule { }
