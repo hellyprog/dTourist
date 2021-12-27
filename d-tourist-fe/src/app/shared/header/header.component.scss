@@ -1,23 +1,42 @@
 @import 'colors';
+@import 'variables';
 
 :host {
+  position: fixed;
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  height: $header-height;
 
   .title {
     font-size: 2rem;
     font-weight: bold;
     cursor: pointer;
+    padding: 15px;
 
     &__link {
-      color: $rangitoto;
+      color: $ultramarine;
       text-decoration: none;
     }
   }
 
   .connect-button {
+    padding: 15px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+
+    &:hover {
+      mat-icon {
+        padding: 10px;
+      }
+    }
+
+    mat-icon {
+      padding: 5px;
+      transition: 0.5s;
+    }
   }
 }

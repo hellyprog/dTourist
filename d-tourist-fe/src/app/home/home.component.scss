@@ -1,0 +1,48 @@
+@import 'colors'; 
+@import 'variables';
+
+:host {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .title {
+        padding-top: calc($header-height + 10px);
+        text-transform: uppercase;
+        font-size: 5rem;
+        font-weight: bold;
+        color: $ultramarine;
+    }
+
+    img {
+        width: 600px;
+        height: 800px;
+    }
+
+    .block-button {
+        padding: 20px;
+        text-transform: uppercase;
+        font-weight: bold;
+        width: 15%;
+        align-self: flex-end;
+        transition: 1s;
+        cursor: pointer;
+
+        &:hover {
+            width: 20%;
+        }
+
+        &--dark {
+            background-color: $crimson-sky;
+        }
+
+        &--light {
+            background-color: $light-blue;
+        }
+
+        &__link {
+            color: $light-text;
+            text-decoration: none;
+          }
+    }
+}
