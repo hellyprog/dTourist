@@ -1,60 +1,85 @@
-@import 'colors'; 
-@import 'variables';
+@import "colors";
+@import "variables";
 
 :host {
-    height: 100vh;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  .title-text {
+    position: absolute;
+    top: 30%;
+    left: 0;
+    color: $crimson-sky;
+    text-transform: uppercase;
+    font-size: 5rem;
+    font-weight: bold;
+    word-wrap: break-word;
+  }
+
+  .image {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+
+  .button-container {
+    position: absolute;
     display: flex;
     flex-direction: column;
-    position: relative;
+    width: 20%;
+    top: 60%;
+    left: 0;
 
-    .title-text {
-        position: absolute;
-        top: 30%;
-        left: 0;
-        color: $crimson-sky;
-        //padding-top: calc($header-height + 10px);
-        text-transform: uppercase;
-        font-size: 5rem;
-        font-weight: bold;
-    }
+    .block-button {
+      padding: 20px;
+      text-transform: uppercase;
+      font-weight: bold;
+      width: 80%;
+      transition: 1s;
+      cursor: pointer;
 
-    .image {
+      &:hover {
         width: 100%;
-        height: 100%;
+      }
+
+      &--dark {
+        background-color: $crimson-sky;
+      }
+
+      &--light {
+        background-color: $light-blue;
+      }
+
+      &__link {
+        color: $white;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 319px) and (max-width: 479px) {
+    :host {
+      .title-text {
+        font-size: 2.5rem;
+      }
+  
+      .button-container {
+          width: 30%;
+      }
+    }
+  }
+
+@media only screen and (min-width: 480px) and (max-width: 991px) {
+  :host {
+    .title-text {
+      font-size: 3rem;
     }
 
     .button-container {
-        position: absolute;
-        display: flex;
-        flex-direction: column;
-        width: 20%;
-        top: 60%;
-        left: 0;
-
-        .block-button {
-            padding: 20px;
-            text-transform: uppercase;
-            font-weight: bold;
-            width: 80%;
-            transition: 1s;
-            cursor: pointer;
-    
-            &:hover {
-                width: 100%;
-            }
-    
-            &--dark {
-                background-color: $crimson-sky;
-            }
-    
-            &--light {
-                background-color: $light-blue;
-            }
-    
-            &__link {
-                color: $white;
-                text-decoration: none;
-            }
-        }
+        width: 25%;
     }
+  }
 }
