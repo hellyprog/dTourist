@@ -13,7 +13,8 @@ export class HeaderComponent implements OnInit {
   constructor(private router: Router) {
     this.router.events.subscribe((value) => {
       if (value instanceof NavigationEnd) {
-        this.isHomePage = value.url === '/home';
+        const homePath = '/home';
+        this.isHomePage = value.url === homePath || value.urlAfterRedirects === homePath;
       }
   });
   }
