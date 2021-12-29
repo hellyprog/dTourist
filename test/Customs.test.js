@@ -2,22 +2,19 @@ const Customs = artifacts.require("Customs");
 
 contract("Customs", (accounts) => {
     let customs;
-    let expectedDate;
 
     before(async() => {
         customs = await Customs.deployed();
     });
 
-    describe("crossing a border and retrieving account address", async() => {
+    describe("crossing a border and retrieving account trip", async() => {
         before("cross a border using accounts[0]", async() => {
-            await customs.crossBorder(accounts[1], accounts[2], 1639604150, { from: accounts[0] });
-            expectedDate = 1639604150;
+            await customs.crossBorder("Lviv", "Ukraine", "Berlin", "Germany", { from: accounts[0] });
         });
 
         it("can fetch trips of a person by person address", async() => {
             const trips = await customs.getValueAtHistoryMapping(accounts[0]);
-            console.log(trips);
-            assert.equal(trips[0].date, expectedDate, "The date of the trip should be 1639604150.");
+            assert.equal(trips[0].from.name, "Lviv", "The from city should be 'Lviv'.");
         });
     });
 });

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { CustomsRoutingModule } from './customs-routing.module';
 import { CustomsComponent } from './customs.component';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { CustomsComponent } from './customs.component';
   ],
   imports: [
     CommonModule,
-    CustomsRoutingModule
+    CustomsRoutingModule,
+    MatIconModule
   ]
 })
 export class CustomsModule { }

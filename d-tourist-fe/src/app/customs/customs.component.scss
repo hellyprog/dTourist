@@ -1,0 +1,63 @@
+@import "colors";
+@import "variables";
+
+:host {
+  display: flex;
+  width: 100%;
+  height: calc(100vh - $header-height);
+  padding-top: $header-height;
+
+  .step {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+
+    &__item {
+      width: 100%;
+      padding: 15px;
+      margin-right: 30px;
+      display: flex;
+      flex-direction: column;
+
+      .city-text {
+        font-size: 3rem;
+      }
+
+      .city-scan {
+        background-color: $light-blue;
+        color: $white;
+        text-transform: uppercase;
+        cursor: pointer;
+        font-size: 2rem;
+        padding: 8px;
+        width: 50%;
+      }
+
+      .travel-info-title {
+        font-size: 3rem;
+      }
+
+      .travel-info-item {
+        display: flex;
+        align-items: center;
+        font-size: 2rem;
+
+        mat-icon {
+          font-size: 2.5rem;
+          width: 2.5rem;
+          height: 2.5rem;
+          color: $light-blue;
+          margin: 0 5px;
+        }
+      }
+    }
+  }
+
+  .result {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 60%;
+  }
+}
