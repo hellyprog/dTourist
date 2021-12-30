@@ -1,5 +1,4 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
 import { NavigationEnd, Router } from '@angular/router';
 
 @Component({

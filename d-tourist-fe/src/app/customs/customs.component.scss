@@ -10,6 +10,7 @@
   .step {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     width: 40%;
 
     &__item {
@@ -30,7 +31,7 @@
         cursor: pointer;
         font-size: 2rem;
         padding: 8px;
-        width: 50%;
+        width: 70%;
       }
 
       .travel-info-title {
@@ -49,6 +50,16 @@
           color: $light-blue;
           margin: 0 5px;
         }
+      }
+
+      .security-check {
+        background-color: $crimson-sky;
+          color: $white;
+          text-transform: uppercase;
+          cursor: pointer;
+          font-size: 2rem;
+          padding: 8px;
+          width: 70%;
       }
     }
   }

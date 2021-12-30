@@ -7,7 +7,10 @@
         <div class="travel-info-title">Travel Info</div>
         <div class="travel-info-item">{{fromCity.name}}({{fromCity.country}}) <mat-icon>arrow_right_alt</mat-icon> {{toCity.name}}({{toCity.country}})</div>
     </div>
+    <div class="step__item" *ngIf="scanSuccessfull">
+        <div class="security-check" (click)="initiateSecurityCheck()">Initiate Security Check</div>
+    </div>
 </div>
-<div class="result">
+<div class="result" *ngIf="securityCheckSuccessfull">
     Security Control was successfull!
 </div>

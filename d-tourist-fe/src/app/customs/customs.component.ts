@@ -10,6 +10,7 @@ export class CustomsComponent implements OnInit {
   fromCity!: City;
   toCity!: City;
   scanSuccessfull = false;
+  securityCheckSuccessfull = false;
 
   constructor() { 
   }
@@ -21,5 +22,10 @@ export class CustomsComponent implements OnInit {
     this.fromCity = new City('Lviv', 'Ukraine');
     this.toCity = new City('Berlin', 'Germany');
     this.scanSuccessfull = true;
+  }
+
+  initiateSecurityCheck() {
+    alert('check');
+    this.securityCheckSuccessfull = true;
   }
 }
