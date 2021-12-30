@@ -1,5 +1,6 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { WalletConnectorService } from '@core/services';
 
 @Component({
   selector: 'app-header',
@@ -8,8 +9,9 @@ import { NavigationEnd, Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   @HostBinding('class.transparent') isHomePage: boolean = true;
+  walletAddress!: string;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private walletConnectorService: WalletConnectorService) {
     this.router.events.subscribe((value) => {
       if (value instanceof NavigationEnd) {
         const homePath = '/home';
@@ -21,4 +23,8 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  connectWallet() {
+    const address = this.walletConnectorService.getWalletAddress();
+    this.walletAddress = `${address.slice(0, 3)}...${address.slice(address.length - 3)}`;
+  }
 }
