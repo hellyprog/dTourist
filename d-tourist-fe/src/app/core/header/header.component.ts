@@ -23,8 +23,8 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  connectWallet() {
-    const address = this.walletConnectorService.getWalletAddress();
+  async connectWallet() {
+    const address = await this.walletConnectorService.getWalletAddress();
     this.walletAddress = `${address.slice(0, 3)}...${address.slice(address.length - 3)}`;
   }
 }
