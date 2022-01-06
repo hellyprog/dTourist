@@ -1,23 +1,29 @@
 import { Injectable } from '@angular/core';
-import { ethers } from "ethers";
+import { ethers } from 'ethers';
 
 declare let window: any;
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class WalletConnectorService {
+  provider: ethers.providers.Web3Provider;
+  signer!: ethers.providers.JsonRpcSigner;
 
-  constructor() { }
+  constructor() {
+    this.provider = new ethers.providers.Web3Provider(window.ethereum, 'any');
+  }
 
-  async getWalletAddress () {
-    const provider = new ethers.providers.Web3Provider(
-      window.ethereum,
-      "any"
-    );
-    await provider.send("eth_requestAccounts", []);
-    const signer = provider.getSigner();
+  async connectWallet(): Promise<string> {
+    await this.provider.send('eth_requestAccounts', []);
+    const signer = this.provider.getSigner();
 
     return signer.getAddress();
+  }
+
+  async isWalletConnected(): Promise<boolean> {
+    debugger;
+    const accounts = await this.provider.listAccounts();
+    return accounts.length > 0;
   }
 }

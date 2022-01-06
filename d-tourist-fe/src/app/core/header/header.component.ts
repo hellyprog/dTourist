@@ -24,7 +24,7 @@ export class HeaderComponent implements OnInit {
   }
 
   async connectWallet() {
-    const address = await this.walletConnectorService.getWalletAddress();
+    const address = await this.walletConnectorService.connectWallet();
     this.walletAddress = `${address.slice(0, 3)}...${address.slice(address.length - 3)}`;
   }
 }
