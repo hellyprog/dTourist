@@ -22,7 +22,6 @@ export class WalletConnectorService {
   }
 
   async isWalletConnected(): Promise<boolean> {
-    debugger;
     const accounts = await this.provider.listAccounts();
     return accounts.length > 0;
   }
