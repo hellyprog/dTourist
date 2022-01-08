@@ -22,9 +22,12 @@
       "es2020",
       "dom"
     ],
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
     "paths": {
       "@core/*": ["src/app/core/*"],
-      "@shared/*": ["src/app/shared/*"]
+      "@shared/*": ["src/app/shared/*"],
+      "@assets/*": ["src/assets/*"]
     }
   },
   "angularCompilerOptions": {

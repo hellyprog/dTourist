@@ -4,15 +4,19 @@ import { WalletConnectorService } from '@core/services';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class WalletConnectedGuard implements CanLoad {
-  constructor(private walletConnectorService: WalletConnectorService) {
-  }
+  constructor(private walletConnectorService: WalletConnectorService) {}
 
   canLoad(
     route: Route,
-    segments: UrlSegment[]): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    segments: UrlSegment[]
+  ):
+    | Observable<boolean | UrlTree>
+    | Promise<boolean | UrlTree>
+    | boolean
+    | UrlTree {
     return this.walletConnectorService.isWalletConnected();
   }
 }

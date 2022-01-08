@@ -8,7 +8,6 @@ declare let window: any;
 })
 export class WalletConnectorService {
   provider: ethers.providers.Web3Provider;
-  signer!: ethers.providers.JsonRpcSigner;
 
   constructor() {
     this.provider = new ethers.providers.Web3Provider(window.ethereum, 'any');

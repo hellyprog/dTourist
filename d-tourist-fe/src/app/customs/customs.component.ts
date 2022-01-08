@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { City } from '../core';
+import { City } from '@core/models';
+import { CustomsService } from '@core/services';
 
 @Component({
   selector: 'app-customs',
@@ -12,7 +13,7 @@ export class CustomsComponent implements OnInit {
   scanSuccessfull = false;
   securityCheckSuccessfull = false;
 
-  constructor() { 
+  constructor(private customsService: CustomsService) { 
   }
 
   ngOnInit(): void {
@@ -20,12 +21,12 @@ export class CustomsComponent implements OnInit {
 
   scanTicket() {
     this.fromCity = new City('Lviv', 'Ukraine');
-    this.toCity = new City('Berlin', 'Germany');
+    this.toCity = new City('Sopot', 'Poland');
     this.scanSuccessfull = true;
   }
 
-  initiateSecurityCheck() {
-    alert('check');
+  async initiateSecurityCheck() {
+    await this.customsService.crossBorder(this.fromCity, this.toCity);
     this.securityCheckSuccessfull = true;
   }
 }
