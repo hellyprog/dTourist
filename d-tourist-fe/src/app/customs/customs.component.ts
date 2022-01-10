@@ -12,6 +12,7 @@ export class CustomsComponent implements OnInit {
   toCity!: City;
   scanSuccessfull = false;
   securityCheckSuccessfull = false;
+  securityCheckMessage!: string;
 
   constructor(private customsService: CustomsService, private geolocationService: GeolocationService) {
     this.getDepartureLocation();
@@ -42,7 +43,8 @@ export class CustomsComponent implements OnInit {
   }
 
   async initiateSecurityCheck() {
-    await this.customsService.crossBorder(this.fromCity, this.toCity);
-    this.securityCheckSuccessfull = true;
+    const result = await this.customsService.crossBorder(this.fromCity, this.toCity);
+    this.securityCheckSuccessfull = result.success;
+    this.securityCheckMessage = result.errorMessage;
   }
 }

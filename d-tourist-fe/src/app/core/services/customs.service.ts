@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { City } from '@core/models';
+import { City, ExecutionResult } from '@core/models';
 import { ethers } from 'ethers';
 import CustomsAbi from '@assets/contracts/Customs.json';
 
@@ -23,5 +23,7 @@ export class CustomsService {
     const signer = this.provider.getSigner();
     var contract = new ethers.Contract(this.customsContract.address, this.customsContract.abi, signer);
     await contract['crossBorder'](fromCity.name, fromCity.country, toCity.name, toCity.country);
+    
+    return new ExecutionResult();
   }
 }

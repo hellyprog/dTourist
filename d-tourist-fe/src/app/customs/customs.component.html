@@ -14,3 +14,6 @@
 <div class="result" *ngIf="securityCheckSuccessfull">
     Security Control was successfull!
 </div>
+<div class="result" *ngIf="!securityCheckSuccessfull">
+    {{securityCheckMessage}}
+</div>
