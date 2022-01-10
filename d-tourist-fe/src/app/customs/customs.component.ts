@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { City } from '@core/models';
-import { CustomsService } from '@core/services';
+import { CustomsService, GeolocationService } from '@core/services';
 
 @Component({
   selector: 'app-customs',
@@ -13,14 +13,30 @@ export class CustomsComponent implements OnInit {
   scanSuccessfull = false;
   securityCheckSuccessfull = false;
 
-  constructor(private customsService: CustomsService) { 
+  constructor(private customsService: CustomsService, private geolocationService: GeolocationService) {
+    this.getDepartureLocation();
   }
 
   ngOnInit(): void {
   }
 
+  getDepartureLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.geolocationService.getCityInfoByCoordinates(position.coords.latitude, position.coords.longitude)
+          .subscribe(response => {
+            if (response.data && response.data.length > 0) {
+              const position = response.data[0];
+              this.fromCity = new City(position.region, position.country);
+            }
+          });
+      });
+    } else {
+      console.error("Geolocation is not supported by this browser.");
+    }
+  }
+
   scanTicket() {
-    this.fromCity = new City('Lviv', 'Ukraine');
     this.toCity = new City('Sopot', 'Poland');
     this.scanSuccessfull = true;
   }

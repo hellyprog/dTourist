@@ -3,7 +3,12 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
-import { CustomsService, WalletConnectorService } from './services';
+import {
+  AppConfigService,
+  CustomsService,
+  GeolocationService,
+  WalletConnectorService 
+} from './services';
 
 @NgModule({
   declarations: [
@@ -19,7 +24,9 @@ import { CustomsService, WalletConnectorService } from './services';
   ],
   providers: [
     WalletConnectorService,
-    CustomsService
+    CustomsService,
+    GeolocationService,
+    AppConfigService
   ]
 })
 export class CoreModule { }
