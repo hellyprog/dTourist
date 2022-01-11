@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { City } from '@core/models';
 import { CustomsService, GeolocationService } from '@core/services';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-customs',
@@ -11,10 +12,14 @@ export class CustomsComponent implements OnInit {
   fromCity!: City;
   toCity!: City;
   scanSuccessfull = false;
-  securityCheckSuccessfull = false;
+  securityCheckSuccessful = false;
   securityCheckMessage!: string;
+  securityCheckInProgress = true;
 
-  constructor(private customsService: CustomsService, private geolocationService: GeolocationService) {
+  constructor(
+    private customsService: CustomsService,
+    private geolocationService: GeolocationService,
+    private spinner: NgxSpinnerService) {
     this.getDepartureLocation();
   }
 
@@ -43,8 +48,11 @@ export class CustomsComponent implements OnInit {
   }
 
   async initiateSecurityCheck() {
+    this.spinner.show();
+    this.securityCheckInProgress = true;
     const result = await this.customsService.crossBorder(this.fromCity, this.toCity);
-    this.securityCheckSuccessfull = result.success;
+    this.securityCheckSuccessful = result.success;
     this.securityCheckMessage = result.errorMessage;
+    this.securityCheckInProgress = false;
   }
 }

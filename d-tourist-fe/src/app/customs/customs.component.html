@@ -11,9 +11,18 @@
         <div class="security-check" (click)="initiateSecurityCheck()">Initiate Security Check</div>
     </div>
 </div>
-<div class="result" *ngIf="securityCheckSuccessfull">
-    Security Control was successfull!
-</div>
-<div class="result" *ngIf="!securityCheckSuccessfull">
-    {{securityCheckMessage}}
+<div class="result">
+    <ngx-spinner 
+        type="timer" 
+        [fullScreen]="false"
+        color="black"
+        bdColor="white">
+        <p class="loading">Processing your data</p>
+    </ngx-spinner>
+    <ng-template *ngIf="!securityCheckInProgress">
+        <div *ngIf="securityCheckSuccessful; else securityCheckUnsuccessful">
+            Security Control was successful!
+        </div>
+        <ng-template #securityCheckUnsuccessful>{{securityCheckMessage}}</ng-template>
+    </ng-template>
 </div>
