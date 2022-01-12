@@ -1,4 +1,4 @@
-import { Component, NgZone, OnInit } from '@angular/core';
+import { Component, NgZone, OnDestroy, OnInit } from '@angular/core';
 import { City, ExecutionResult } from '@core/models';
 import { CustomsService, GeolocationService } from '@core/services';
 import { NgxSpinnerService } from "ngx-spinner";
@@ -8,7 +8,7 @@ import { NgxSpinnerService } from "ngx-spinner";
   templateUrl: './customs.component.html',
   styleUrls: ['./customs.component.scss']
 })
-export class CustomsComponent implements OnInit {
+export class CustomsComponent implements OnInit, OnDestroy {
   fromCity!: City;
   toCity!: City;
   scanSuccessfull = false;
@@ -24,6 +24,11 @@ export class CustomsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.customsService.contract.on("TravelerDataProcessed", this.handleProcessedDataResult.bind(this));
+  }
+
+  ngOnDestroy(): void {
+    this.customsService.contract.off("TravelerDataProcessed", this.handleProcessedDataResult.bind(this));
   }
 
   getDepartureLocation() {
@@ -51,8 +56,6 @@ export class CustomsComponent implements OnInit {
     this.spinner.show();
     this.securityCheckInProgress = true;
     await this.customsService.crossBorder(this.fromCity, this.toCity);
-
-    this.customsService.contract.on("TravelerDataProcessed", this.handleProcessedDataResult.bind(this));
   }
 
   handleProcessedDataResult(success: boolean, message: string) {

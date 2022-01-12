@@ -71,5 +71,15 @@
       justify-content: center;
       width: 60%;
       position: relative;
+
+      .check-result {
+        font-size: 3rem;
+        text-align: center;
+      }
+
+      .check-message {
+        font-size: 2rem;
+        text-align: center;
+      }
   }
 }

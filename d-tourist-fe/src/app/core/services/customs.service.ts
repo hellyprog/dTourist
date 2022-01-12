@@ -18,8 +18,6 @@ export class CustomsService {
   constructor() {
     this.provider = new ethers.providers.Web3Provider(window.ethereum, 'any');
     this.wsProvider = new ethers.providers.WebSocketProvider('wss://rinkeby.infura.io/ws/v3/cbfccb482e9948de9fa068c1d2318700');
-    console.log(this.provider)
-    console.log(this.wsProvider);
     this.customsContract.abi = CustomsAbi.abi;
   }
 
