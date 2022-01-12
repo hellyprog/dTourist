@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 import { City, ExecutionResult } from '@core/models';
 import { CustomsService, GeolocationService } from '@core/services';
 import { NgxSpinnerService } from "ngx-spinner";
@@ -43,7 +43,7 @@ export class CustomsComponent implements OnInit {
   }
 
   scanTicket() {
-    this.toCity = new City('Madrid', 'Spain');
+    this.toCity = new City('Barcelona', 'Spain');
     this.scanSuccessfull = true;
   }
 
@@ -56,10 +56,9 @@ export class CustomsComponent implements OnInit {
   }
 
   handleProcessedDataResult(success: boolean, message: string) {
-    debugger;
+    this.spinner.hide();
     this.securityCheckSuccessful = success;
     this.securityCheckMessage = message;
     this.securityCheckInProgress = false;
-    this.spinner.hide();
   }
 }

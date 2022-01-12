@@ -19,7 +19,7 @@
         bdColor="white">
         <p class="loading">Processing your data</p>
     </ngx-spinner>
-    <ng-template *ngIf="!securityCheckInProgress">
+    <div *ngIf="!securityCheckInProgress">
         <div>{{securityCheckMessage}}</div>
-    </ng-template>
+    </div>
 </div>
