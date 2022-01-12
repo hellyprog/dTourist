@@ -54,12 +54,12 @@
 
       .security-check {
         background-color: $crimson-sky;
-          color: $white;
-          text-transform: uppercase;
-          cursor: pointer;
-          font-size: 2rem;
-          padding: 8px;
-          width: 70%;
+        color: $white;
+        text-transform: uppercase;
+        cursor: pointer;
+        font-size: 2rem;
+        padding: 8px;
+        width: 70%;
       }
     }
   }
@@ -72,9 +72,35 @@
       width: 60%;
       position: relative;
 
+      .loading-text {
+        font-size: 1.5rem;
+        margin-top: 30px;
+      }
+
       .check-result {
-        font-size: 3rem;
-        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        mat-icon {
+          font-size: 5rem;
+          width: 5rem;
+          height: 5rem;
+        }
+
+        .text {
+          font-size: 3rem;
+          text-align: center;
+        }
+
+        &--success {
+          color: $light-blue;
+        }
+
+        &--failure {
+          color: $crimson-sky;
+        }
       }
 
       .check-message {

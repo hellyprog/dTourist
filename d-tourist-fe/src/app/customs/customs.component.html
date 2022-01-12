@@ -1,26 +1,38 @@
 <div class="step">
-    <div class="step__item">
-        <div class="city-text">Please scan your ticket</div>
-        <div class="city-scan" (click)="scanTicket()">Scan</div>
+  <div class="step__item">
+    <div class="city-text">Please scan your ticket</div>
+    <div class="city-scan" (click)="scanTicket()">Scan</div>
+  </div>
+  <div class="step__item" *ngIf="scanSuccessfull && fromCity">
+    <div class="travel-info-title">Travel Info</div>
+    <div class="travel-info-item">
+      {{ fromCity.name }}({{ fromCity.country }})
+      <mat-icon>arrow_right_alt</mat-icon> {{ toCity.name }}({{
+        toCity.country
+      }})
     </div>
-    <div class="step__item" *ngIf="scanSuccessfull && fromCity">
-        <div class="travel-info-title">Travel Info</div>
-        <div class="travel-info-item">{{fromCity.name}}({{fromCity.country}}) <mat-icon>arrow_right_alt</mat-icon> {{toCity.name}}({{toCity.country}})</div>
+  </div>
+  <div class="step__item" *ngIf="scanSuccessfull">
+    <div class="security-check" (click)="initiateSecurityCheck()">
+      Initiate Security Check
     </div>
-    <div class="step__item" *ngIf="scanSuccessfull">
-        <div class="security-check" (click)="initiateSecurityCheck()">Initiate Security Check</div>
-    </div>
+  </div>
 </div>
 <div class="result">
-    <ngx-spinner 
-        type="timer" 
-        [fullScreen]="false"
-        color="black"
-        bdColor="white">
-        <p class="loading">Processing your data</p>
-    </ngx-spinner>
-    <div *ngIf="!securityCheckInProgress">
-        <div class="check-result">{{securityCheckSuccessful ? 'Success' : 'Failure'}}</div>
-        <div class="check-message">{{securityCheckMessage}}</div>
+  <ngx-spinner type="timer" [fullScreen]="false" color="black" bdColor="white">
+    <div class="loading-text">Processing your data</div>
+  </ngx-spinner>
+  <div *ngIf="!securityCheckInProgress">
+    <div
+      class="check-result"
+      [class.check-result--success]="securityCheckSuccessful"
+      [class.check-result--failure]="!securityCheckSuccessful"
+    >
+      <mat-icon>
+        {{ securityCheckSuccessful ? "check_circle" : "highlight_off" }}
+      </mat-icon>
+      <div class="text">{{ securityCheckSuccessful ? "Success" : "Failure" }}</div>
     </div>
+    <div class="check-message">{{ securityCheckMessage }}</div>
+  </div>
 </div>
