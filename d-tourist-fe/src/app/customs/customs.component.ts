@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { City } from '@core/models';
+import { City, ExecutionResult } from '@core/models';
 import { CustomsService, GeolocationService } from '@core/services';
 import { NgxSpinnerService } from "ngx-spinner";
 
@@ -43,16 +43,23 @@ export class CustomsComponent implements OnInit {
   }
 
   scanTicket() {
-    this.toCity = new City('Sopot', 'Poland');
+    this.toCity = new City('Madrid', 'Spain');
     this.scanSuccessfull = true;
   }
 
   async initiateSecurityCheck() {
     this.spinner.show();
     this.securityCheckInProgress = true;
-    const result = await this.customsService.crossBorder(this.fromCity, this.toCity);
-    this.securityCheckSuccessful = result.success;
-    this.securityCheckMessage = result.errorMessage;
+    await this.customsService.crossBorder(this.fromCity, this.toCity);
+
+    this.customsService.contract.on("TravelerDataProcessed", this.handleProcessedDataResult.bind(this));
+  }
+
+  handleProcessedDataResult(success: boolean, message: string) {
+    debugger;
+    this.securityCheckSuccessful = success;
+    this.securityCheckMessage = message;
     this.securityCheckInProgress = false;
+    this.spinner.hide();
   }
 }

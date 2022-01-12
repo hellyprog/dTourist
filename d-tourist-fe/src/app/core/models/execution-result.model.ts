@@ -1,9 +1,9 @@
 export class ExecutionResult {
     success!: boolean;
-    errorMessage!: string;
+    message!: string;
 
     constructor(success: boolean = true, errorMessage: string = '') {
         this.success = success;
-        this.errorMessage = errorMessage;
+        this.message = errorMessage;
     }
 }

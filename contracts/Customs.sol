@@ -3,6 +3,8 @@ pragma experimental ABIEncoderV2;
 pragma solidity >=0.4.22 <0.9.0;
 
 contract Customs {
+    event TravelerDataProcessed(bool success, string message);
+
     struct Trip {
         City from;
         City to;
@@ -30,6 +32,8 @@ contract Customs {
                 true
             )
         );
+
+        emit TravelerDataProcessed(true, "Border crossing is allowed");
     }
 
     function getValueAtHistoryMapping(address userAddress) public view returns (Trip[] memory) {
