@@ -20,11 +20,18 @@ export class HeaderComponent implements OnInit {
   });
   }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    if (await this.walletConnectorService.isWalletConnected()) {
+      this.connectWallet();
+    }
   }
 
   async connectWallet() {
     const address = await this.walletConnectorService.connectWallet();
-    this.walletAddress = `${address.slice(0, 3)}...${address.slice(address.length - 3)}`;
+    this.walletAddress = this.formatAddress(address);
+  }
+
+  formatAddress(address: string): string {
+    return `${address.slice(0, 3)}...${address.slice(address.length - 3)}`;
   }
 }
