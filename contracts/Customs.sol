@@ -17,13 +17,13 @@ contract Customs {
         string country;
     }
 
-    mapping(address => Trip[]) public personToHistory;
+    mapping(address => Trip[]) personToHistory;
 
     function crossBorder(
         string memory _fromCity,
         string memory _fromCountry,
         string memory _toCity,
-        string memory _toCountry) public {
+        string memory _toCountry) external {
         personToHistory[msg.sender].push(
             Trip(
                 City(_fromCity, _fromCountry), 
