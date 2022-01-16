@@ -1,5 +1,5 @@
-import { Component, NgZone, OnDestroy, OnInit } from '@angular/core';
-import { City, ExecutionResult } from '@core/models';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { City } from '@core/models';
 import { CustomsService, GeolocationService } from '@core/services';
 import { NgxSpinnerService } from "ngx-spinner";
 
@@ -24,11 +24,11 @@ export class CustomsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.customsService.contract.on("TravelerDataProcessed", this.handleProcessedDataResult.bind(this));
+    this.customsService.subscribeToContractEvent("TravelerDataProcessed", this.handleProcessedDataResult.bind(this));
   }
 
   ngOnDestroy(): void {
-    this.customsService.contract.off("TravelerDataProcessed", this.handleProcessedDataResult.bind(this));
+    this.customsService.unsubscribeFromContractEvent("TravelerDataProcessed", this.handleProcessedDataResult.bind(this));
   }
 
   getDepartureLocation() {

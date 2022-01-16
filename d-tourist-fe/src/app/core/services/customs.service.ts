@@ -27,8 +27,15 @@ export class CustomsService {
     return contract['crossBorder'](fromCity.name, fromCity.country, toCity.name, toCity.country);
   }
 
-  get contract() {
+  subscribeToContractEvent(eventName: string, callback: any) {
     const signer = this.wsProvider.getSigner();
-    return new ethers.Contract(this.customsContract.address, this.customsContract.abi, signer);
+    const contract = new ethers.Contract(this.customsContract.address, this.customsContract.abi, signer);
+    contract.on(eventName, callback);
+  }
+
+  unsubscribeFromContractEvent(eventName: string, callback: any) {
+    const signer = this.wsProvider.getSigner();
+    const contract = new ethers.Contract(this.customsContract.address, this.customsContract.abi, signer);
+    contract.off(eventName, callback);
   }
 }

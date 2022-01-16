@@ -24,4 +24,16 @@ export class WalletConnectorService {
     const accounts = await this.provider.listAccounts();
     return accounts.length > 0;
   }
+
+  subscribeToWalletEvent(eventName: string, callback: any) {
+    window.ethereum.on('networkChanged', (networkId: any) => {
+      console.log('networkChanged',networkId);
+    });
+  }
+
+  unsubscribeFromWalletEvent(eventName: string, callback: any) {
+    window.ethereum.on('networkChanged', (networkId: any) => {
+      console.log('networkChanged',networkId);
+    });
+  }
 }
