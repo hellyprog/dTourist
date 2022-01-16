@@ -26,14 +26,10 @@ export class WalletConnectorService {
   }
 
   subscribeToWalletEvent(eventName: string, callback: any) {
-    window.ethereum.on('networkChanged', (networkId: any) => {
-      console.log('networkChanged',networkId);
-    });
+    window.ethereum.on(eventName, callback);
   }
 
   unsubscribeFromWalletEvent(eventName: string, callback: any) {
-    window.ethereum.on('networkChanged', (networkId: any) => {
-      console.log('networkChanged',networkId);
-    });
+    window.ethereum.removeListener(eventName, callback);
   }
 }

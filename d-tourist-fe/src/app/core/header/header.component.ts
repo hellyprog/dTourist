@@ -1,4 +1,4 @@
-import { Component, HostBinding, OnInit } from '@angular/core';
+import { Component, HostBinding, OnDestroy, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { WalletConnectorService } from '@core/services';
 
@@ -7,7 +7,7 @@ import { WalletConnectorService } from '@core/services';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   @HostBinding('class.transparent') isHomePage: boolean = true;
   walletAddress!: string;
 
@@ -17,13 +17,19 @@ export class HeaderComponent implements OnInit {
         const homePath = '/home';
         this.isHomePage = value.url === homePath || value.urlAfterRedirects === homePath;
       }
-  });
+    });
   }
 
   async ngOnInit() {
     if (await this.walletConnectorService.isWalletConnected()) {
       this.connectWallet();
     }
+
+    this.walletConnectorService.subscribeToWalletEvent('networkChanged', console.log);
+  }
+
+  ngOnDestroy(): void {
+    this.walletConnectorService.subscribeToWalletEvent('networkChanged', console.log);
   }
 
   async connectWallet() {
