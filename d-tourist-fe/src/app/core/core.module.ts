@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {
   AppConfigService,
   CustomsService,
@@ -17,7 +18,8 @@ import {
   imports: [
     CommonModule,
     RouterModule,
-    MatIconModule
+    MatIconModule,
+    MatSnackBarModule
   ],
   exports: [
     HeaderComponent

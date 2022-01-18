@@ -3,6 +3,7 @@
 @include mat.core();
 
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+@import 'colors';
 
 * {
   margin: 0;
@@ -29,6 +30,18 @@ body {
   min-height: 100vh;
   display: flex;
   box-sizing: border-box;
+}
+
+.snackbar-primary {
+  background: $crimson-sky;
+  color: $white;
+
+  button {
+    background: none;
+    color: $white;
+    font-weight: bold;
+    cursor: pointer;
+  }
 }
 
 @media only screen and (min-width: 319px) and (max-width: 767px) {
