@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ethers } from 'ethers';
 
 declare let window: any;
@@ -8,8 +9,9 @@ declare let window: any;
 })
 export class WalletConnectorService {
   provider: ethers.providers.Web3Provider;
+  RINKEBY_NETWORK_ID = 4;
 
-  constructor() {
+  constructor(private snackBar: MatSnackBar) {
     this.provider = new ethers.providers.Web3Provider(window.ethereum, 'any');
   }
 
@@ -23,6 +25,23 @@ export class WalletConnectorService {
   async isWalletConnected(): Promise<boolean> {
     const accounts = await this.provider.listAccounts();
     return accounts.length > 0;
+  }
+
+  async isCorrectNetworkConnected(): Promise<boolean> {
+    const { chainId } = await this.provider.getNetwork();
+    return chainId === this.RINKEBY_NETWORK_ID;
+  }
+
+  async ensureCorrectNetworkConnected() {
+    const { chainId } = await this.provider.getNetwork();
+
+    if (Number(chainId) !== this.RINKEBY_NETWORK_ID) {
+      const snackBarText = 'Selected network is incorrect. Please switch to Rinkeby network.';
+      this.snackBar.open(snackBarText, 'Close', {
+        duration: 2000,
+        panelClass: ['snackbar-primary']
+      });
+    }
   }
 
   subscribeToWalletEvent(eventName: string, callback: any) {
