@@ -32,7 +32,7 @@ export class WalletConnectorService {
     return chainId === this.RINKEBY_NETWORK_ID;
   }
 
-  async ensureCorrectNetworkConnected() {
+  async ensureCorrectNetworkConnected(): Promise<boolean> {
     const { chainId } = await this.provider.getNetwork();
 
     if (Number(chainId) !== this.RINKEBY_NETWORK_ID) {
@@ -41,7 +41,11 @@ export class WalletConnectorService {
         duration: 2000,
         panelClass: ['snackbar-primary']
       });
+
+      return false
     }
+
+    return true;
   }
 
   subscribeToWalletEvent(eventName: string, callback: any) {
