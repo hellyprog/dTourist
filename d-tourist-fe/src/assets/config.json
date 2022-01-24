@@ -1,4 +1,6 @@
 {
     "positionStackAPI": "http://api.positionstack.com/v1/reverse",
-    "positionStackKey": "ea65ac65508a35ff9dd84c6d3cf758d6"
+    "positionStackKey": "ea65ac65508a35ff9dd84c6d3cf758d6",
+    "customsContractAddress": "0xb62Be19F9C6F259d329FFA206b24c0D4CfDbc13C",
+    "wsProvider": "wss://rinkeby.infura.io/ws/v3/cbfccb482e9948de9fa068c1d2318700"
 }

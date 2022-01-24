@@ -10,26 +10,24 @@ export class AppConfigService {
 
   constructor(private http: HttpClient) { }
 
-  loadAppConfig() {
-    return firstValueFrom(this.http.get('/assets/config.json'))
-      .then(data => {
-        this.appConfig = data;
-      });
+  async loadAppConfig() {
+    const data = await firstValueFrom(this.http.get('/assets/config.json'));
+    this.appConfig = data;
   }
 
   get positionStackAPI() {
-    if (!this.appConfig) {
-      throw Error('Config file not loaded!');
-    }
-
     return this.appConfig.positionStackAPI;
   }
 
   get positionStackKey() {
-    if (!this.appConfig) {
-      throw Error('Config file not loaded!');
-    }
-
     return this.appConfig.positionStackKey;
+  }
+
+  get customsContractAddress() {
+    return this.appConfig.customsContractAddress;
+  }
+
+  get wsProvider() {
+    return this.appConfig.wsProvider;
   }
 }

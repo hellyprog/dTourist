@@ -3,6 +3,7 @@ import { City, ExecutionResult } from '@core/models';
 import { ethers } from 'ethers';
 import CustomsAbi from '@assets/contracts/Customs.json';
 import { WalletConnectorService } from './wallet-connector.service';
+import { AppConfigService } from './app-config.service';
 
 declare let window: any;
 
@@ -12,13 +13,14 @@ declare let window: any;
 export class CustomsService {
   provider: ethers.providers.Web3Provider;
   wsProvider: ethers.providers.WebSocketProvider;
-  customsContract: any = {
-    address: '0xb62Be19F9C6F259d329FFA206b24c0D4CfDbc13C'
-  }
+  customsContract: any = {};
 
-  constructor(private walletConnectorService: WalletConnectorService) {
+  constructor(
+    private walletConnectorService: WalletConnectorService,
+    private appConfigService: AppConfigService) {
     this.provider = new ethers.providers.Web3Provider(window.ethereum, 'any');
-    this.wsProvider = new ethers.providers.WebSocketProvider('wss://rinkeby.infura.io/ws/v3/cbfccb482e9948de9fa068c1d2318700');
+    this.wsProvider = new ethers.providers.WebSocketProvider(this.appConfigService.wsProvider);
+    this.customsContract.address = this.appConfigService.customsContractAddress;
     this.customsContract.abi = CustomsAbi.abi;
   }
 
