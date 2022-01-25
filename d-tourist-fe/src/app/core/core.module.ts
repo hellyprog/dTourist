@@ -8,6 +8,7 @@ import {
   AppConfigService,
   CustomsService,
   GeolocationService,
+  InsuranceService,
   WalletConnectorService 
 } from './services';
 
@@ -28,7 +29,8 @@ import {
     WalletConnectorService,
     CustomsService,
     GeolocationService,
-    AppConfigService
+    AppConfigService,
+    InsuranceService
   ]
 })
 export class CoreModule { }
