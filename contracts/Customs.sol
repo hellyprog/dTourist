@@ -5,6 +5,8 @@ pragma solidity >=0.4.22 <0.9.0;
 contract Customs {
     event TravelerDataProcessed(bool success, string message);
 
+    InsuranceInterface insuranceContract;
+
     struct Trip {
         City from;
         City to;
@@ -24,23 +26,38 @@ contract Customs {
         string memory _fromCountry,
         string memory _toCity,
         string memory _toCountry) external {
-        personToHistory[msg.sender].push(
-            Trip(
-                City(_fromCity, _fromCountry), 
-                City(_toCity, _toCountry), 
-                uint64(block.timestamp), 
-                true
-            )
-        );
+            if (isInsuranceUpToDate(msg.sender)) {
+                personToHistory[msg.sender].push(
+                    Trip(
+                        City(_fromCity, _fromCountry), 
+                        City(_toCity, _toCountry), 
+                        uint64(block.timestamp), 
+                        true
+                    )
+                );
+            }
 
-        emit TravelerDataProcessed(true, "Border crossing is allowed");
+            emit TravelerDataProcessed(true, "Border crossing is allowed");
+    }
+
+    function setInsuranceContractAddress(address _address) external {
+        insuranceContract = InsuranceInterface(_address);
+    }
+
+    function isInsuranceUpToDate(address _person) private view returns (bool) {
+        uint expiryDate = insuranceContract.getInsuranceInfo(_person);
+
+        return expiryDate > block.timestamp;
     }
 
     function getValueAtHistoryMapping(address userAddress) public view returns (Trip[] memory) {
         return personToHistory[userAddress];
     }
+}
 
-    /*function _isCrossingAllowed(address _user) private pure returns (bool) {
-        return true;
-    }*/
+
+interface InsuranceInterface {
+    function getInsuranceInfo(address _person) external view returns (
+        uint expipryDate
+    );
 }

@@ -23,4 +23,8 @@ contract InsuranceStore {
         
         personToInsurance[msg.sender] = Insurance(block.timestamp + _days, _type);
     }
+
+    function getInsuranceInfo(address _person) external view returns(uint expiryDate) {
+        return personToInsurance[_person].expiryDate;
+    }
 }
