@@ -2,7 +2,9 @@
 pragma experimental ABIEncoderV2;
 pragma solidity >=0.4.22 <0.9.0;
 
-contract Customs {
+import "@openzeppelin/contracts/access/Ownable.sol";
+
+contract Customs is Ownable {
     event TravelerDataProcessed(bool success, string message);
 
     InsuranceInterface insuranceContract;
@@ -40,7 +42,7 @@ contract Customs {
             emit TravelerDataProcessed(true, "Border crossing is allowed");
     }
 
-    function setInsuranceContractAddress(address _address) external {
+    function setInsuranceContractAddress(address _address) external onlyOwner {
         insuranceContract = InsuranceInterface(_address);
     }
 
@@ -54,7 +56,6 @@ contract Customs {
         return personToHistory[userAddress];
     }
 }
-
 
 interface InsuranceInterface {
     function getInsuranceInfo(address _person) external view returns (
