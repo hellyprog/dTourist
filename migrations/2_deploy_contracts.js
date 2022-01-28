@@ -1,5 +1,8 @@
 var Customs = artifacts.require("./Customs");
+var Insurance = artifacts.require("./InsuranceStore");
 
-module.exports = function(deployer) {
-    deployer.deploy(Customs);
+module.exports = async (deployer) => {
+    deployer.deploy(Insurance).then(() => {
+        return deployer.deploy(Customs, Insurance.address);
+    })
 };

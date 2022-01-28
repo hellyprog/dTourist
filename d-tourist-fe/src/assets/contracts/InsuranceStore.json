@@ -17,7 +17,8 @@
       "name": "buyInsurance",
       "outputs": [],
       "stateMutability": "payable",
-      "type": "function"
+      "type": "function",
+      "payable": true
     },
     {
       "inputs": [
@@ -36,7 +37,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     }
   ],
   "metadata": "{\"compiler\":{\"version\":\"0.8.2+commit.661d1103\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_days\",\"type\":\"uint256\"},{\"internalType\":\"enum InsuranceStore.InsuranceType\",\"name\":\"_type\",\"type\":\"uint8\"}],\"name\":\"buyInsurance\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_person\",\"type\":\"address\"}],\"name\":\"getInsuranceInfo\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"expiryDate\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/Insurance.sol\":\"InsuranceStore\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/Insurance.sol\":{\"keccak256\":\"0x6320d6643dbc8c9a34d6c71e3041eaa0892b41db9217267a59f31cc5ccafc05a\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://6d26013be8992efbfe787badeb119955baacbeba5bedcec50bd11c9e130f2e45\",\"dweb:/ipfs/Qmdw98RvrymcZ6QQCNChE33dmw5B6k6bQJJ18CMprB6mS3\"]}},\"version\":1}",
@@ -172,7 +174,7 @@
                       }
                     ],
                     "functionName": {
-                      "name": "validator_revert_t_enum$_InsuranceType_$271",
+                      "name": "validator_revert_t_enum$_InsuranceType_$283",
                       "nodeType": "YulIdentifier",
                       "src": "269:43:5"
                     },
@@ -184,7 +186,7 @@
                 }
               ]
             },
-            "name": "abi_decode_t_enum$_InsuranceType_$271",
+            "name": "abi_decode_t_enum$_InsuranceType_$283",
             "nodeType": "YulFunctionDefinition",
             "parameters": [
               {
@@ -686,7 +688,7 @@
                           }
                         ],
                         "functionName": {
-                          "name": "abi_decode_t_enum$_InsuranceType_$271",
+                          "name": "abi_decode_t_enum$_InsuranceType_$283",
                           "nodeType": "YulIdentifier",
                           "src": "1098:37:5"
                         },
@@ -705,7 +707,7 @@
                 }
               ]
             },
-            "name": "abi_decode_tuple_t_uint256t_enum$_InsuranceType_$271",
+            "name": "abi_decode_tuple_t_uint256t_enum$_InsuranceType_$283",
             "nodeType": "YulFunctionDefinition",
             "parameters": [
               {
@@ -1747,7 +1749,7 @@
                 }
               ]
             },
-            "name": "validator_revert_t_enum$_InsuranceType_$271",
+            "name": "validator_revert_t_enum$_InsuranceType_$283",
             "nodeType": "YulFunctionDefinition",
             "parameters": [
               {
@@ -1862,7 +1864,7 @@
           }
         ]
       },
-      "contents": "{\n\n    function abi_decode_t_address(offset, end) -> value {\n        value := calldataload(offset)\n        validator_revert_t_address(value)\n    }\n\n    function abi_decode_t_enum$_InsuranceType_$271(offset, end) -> value {\n        value := calldataload(offset)\n        validator_revert_t_enum$_InsuranceType_$271(value)\n    }\n\n    function abi_decode_t_uint256(offset, end) -> value {\n        value := calldataload(offset)\n        validator_revert_t_uint256(value)\n    }\n\n    function abi_decode_tuple_t_address(headStart, dataEnd) -> value0 {\n        if slt(sub(dataEnd, headStart), 32) { revert(0, 0) }\n\n        {\n\n            let offset := 0\n\n            value0 := abi_decode_t_address(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n    function abi_decode_tuple_t_uint256t_enum$_InsuranceType_$271(headStart, dataEnd) -> value0, value1 {\n        if slt(sub(dataEnd, headStart), 64) { revert(0, 0) }\n\n        {\n\n            let offset := 0\n\n            value0 := abi_decode_t_uint256(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := 32\n\n            value1 := abi_decode_t_enum$_InsuranceType_$271(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n    function abi_encode_t_uint256_to_t_uint256_fromStack(value, pos) {\n        mstore(pos, cleanup_t_uint256(value))\n    }\n\n    function abi_encode_tuple_t_uint256__to_t_uint256__fromStack_reversed(headStart , value0) -> tail {\n        tail := add(headStart, 32)\n\n        abi_encode_t_uint256_to_t_uint256_fromStack(value0,  add(headStart, 0))\n\n    }\n\n    function checked_add_t_uint256(x, y) -> sum {\n        x := cleanup_t_uint256(x)\n        y := cleanup_t_uint256(y)\n\n        // overflow, if x > (maxValue - y)\n        if gt(x, sub(0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff, y)) { panic_error_0x11() }\n\n        sum := add(x, y)\n    }\n\n    function checked_mul_t_uint256(x, y) -> product {\n        x := cleanup_t_uint256(x)\n        y := cleanup_t_uint256(y)\n\n        // overflow, if x != 0 and y > (maxValue / x)\n        if and(iszero(iszero(x)), gt(y, div(0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff, x))) { panic_error_0x11() }\n\n        product := mul(x, y)\n    }\n\n    function cleanup_t_address(value) -> cleaned {\n        cleaned := cleanup_t_uint160(value)\n    }\n\n    function cleanup_t_uint160(value) -> cleaned {\n        cleaned := and(value, 0xffffffffffffffffffffffffffffffffffffffff)\n    }\n\n    function cleanup_t_uint256(value) -> cleaned {\n        cleaned := value\n    }\n\n    function panic_error_0x11() {\n        mstore(0, 35408467139433450592217433187231851964531694900788300625387963629091585785856)\n        mstore(4, 0x11)\n        revert(0, 0x24)\n    }\n\n    function validator_revert_t_address(value) {\n        if iszero(eq(value, cleanup_t_address(value))) { revert(0, 0) }\n    }\n\n    function validator_revert_t_enum$_InsuranceType_$271(value) {\n        if iszero(lt(value, 2)) { revert(0, 0) }\n    }\n\n    function validator_revert_t_uint256(value) {\n        if iszero(eq(value, cleanup_t_uint256(value))) { revert(0, 0) }\n    }\n\n}\n",
+      "contents": "{\n\n    function abi_decode_t_address(offset, end) -> value {\n        value := calldataload(offset)\n        validator_revert_t_address(value)\n    }\n\n    function abi_decode_t_enum$_InsuranceType_$283(offset, end) -> value {\n        value := calldataload(offset)\n        validator_revert_t_enum$_InsuranceType_$283(value)\n    }\n\n    function abi_decode_t_uint256(offset, end) -> value {\n        value := calldataload(offset)\n        validator_revert_t_uint256(value)\n    }\n\n    function abi_decode_tuple_t_address(headStart, dataEnd) -> value0 {\n        if slt(sub(dataEnd, headStart), 32) { revert(0, 0) }\n\n        {\n\n            let offset := 0\n\n            value0 := abi_decode_t_address(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n    function abi_decode_tuple_t_uint256t_enum$_InsuranceType_$283(headStart, dataEnd) -> value0, value1 {\n        if slt(sub(dataEnd, headStart), 64) { revert(0, 0) }\n\n        {\n\n            let offset := 0\n\n            value0 := abi_decode_t_uint256(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := 32\n\n            value1 := abi_decode_t_enum$_InsuranceType_$283(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n    function abi_encode_t_uint256_to_t_uint256_fromStack(value, pos) {\n        mstore(pos, cleanup_t_uint256(value))\n    }\n\n    function abi_encode_tuple_t_uint256__to_t_uint256__fromStack_reversed(headStart , value0) -> tail {\n        tail := add(headStart, 32)\n\n        abi_encode_t_uint256_to_t_uint256_fromStack(value0,  add(headStart, 0))\n\n    }\n\n    function checked_add_t_uint256(x, y) -> sum {\n        x := cleanup_t_uint256(x)\n        y := cleanup_t_uint256(y)\n\n        // overflow, if x > (maxValue - y)\n        if gt(x, sub(0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff, y)) { panic_error_0x11() }\n\n        sum := add(x, y)\n    }\n\n    function checked_mul_t_uint256(x, y) -> product {\n        x := cleanup_t_uint256(x)\n        y := cleanup_t_uint256(y)\n\n        // overflow, if x != 0 and y > (maxValue / x)\n        if and(iszero(iszero(x)), gt(y, div(0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff, x))) { panic_error_0x11() }\n\n        product := mul(x, y)\n    }\n\n    function cleanup_t_address(value) -> cleaned {\n        cleaned := cleanup_t_uint160(value)\n    }\n\n    function cleanup_t_uint160(value) -> cleaned {\n        cleaned := and(value, 0xffffffffffffffffffffffffffffffffffffffff)\n    }\n\n    function cleanup_t_uint256(value) -> cleaned {\n        cleaned := value\n    }\n\n    function panic_error_0x11() {\n        mstore(0, 35408467139433450592217433187231851964531694900788300625387963629091585785856)\n        mstore(4, 0x11)\n        revert(0, 0x24)\n    }\n\n    function validator_revert_t_address(value) {\n        if iszero(eq(value, cleanup_t_address(value))) { revert(0, 0) }\n    }\n\n    function validator_revert_t_enum$_InsuranceType_$283(value) {\n        if iszero(lt(value, 2)) { revert(0, 0) }\n    }\n\n    function validator_revert_t_uint256(value) {\n        if iszero(eq(value, cleanup_t_uint256(value))) { revert(0, 0) }\n    }\n\n}\n",
       "id": 5,
       "language": "Yul",
       "name": "#utility.yul"
@@ -1876,15 +1878,15 @@
     "absolutePath": "project:/contracts/Insurance.sol",
     "exportedSymbols": {
       "InsuranceStore": [
-        354
+        366
       ]
     },
-    "id": 355,
+    "id": 367,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 268,
+        "id": 280,
         "literals": [
           "solidity",
           ">=",
@@ -1903,9 +1905,9 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "id": 354,
+        "id": 366,
         "linearizedBaseContracts": [
-          354
+          366
         ],
         "name": "InsuranceStore",
         "nameLocation": "78:14:3",
@@ -1913,17 +1915,17 @@
         "nodes": [
           {
             "canonicalName": "InsuranceStore.InsuranceType",
-            "id": 271,
+            "id": 283,
             "members": [
               {
-                "id": 269,
+                "id": 281,
                 "name": "CLASSIC",
                 "nameLocation": "121:7:3",
                 "nodeType": "EnumValue",
                 "src": "121:7:3"
               },
               {
-                "id": 270,
+                "id": 282,
                 "name": "PREMIUM",
                 "nameLocation": "130:7:3",
                 "nodeType": "EnumValue",
@@ -1937,12 +1939,12 @@
           },
           {
             "constant": false,
-            "id": 274,
+            "id": 286,
             "mutability": "mutable",
             "name": "basicDaylyInsurancePrice",
             "nameLocation": "152:24:3",
             "nodeType": "VariableDeclaration",
-            "scope": 354,
+            "scope": 366,
             "src": "147:42:3",
             "stateVariable": true,
             "storageLocation": "default",
@@ -1951,7 +1953,7 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 272,
+              "id": 284,
               "name": "uint",
               "nodeType": "ElementaryTypeName",
               "src": "147:4:3",
@@ -1962,7 +1964,7 @@
             },
             "value": {
               "hexValue": "302e3031",
-              "id": 273,
+              "id": 285,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
@@ -1981,12 +1983,12 @@
           },
           {
             "constant": false,
-            "id": 277,
+            "id": 289,
             "mutability": "mutable",
             "name": "basicDaylyInsurancePremiumPrice",
             "nameLocation": "201:31:3",
             "nodeType": "VariableDeclaration",
-            "scope": 354,
+            "scope": 366,
             "src": "196:50:3",
             "stateVariable": true,
             "storageLocation": "default",
@@ -1995,7 +1997,7 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 275,
+              "id": 287,
               "name": "uint",
               "nodeType": "ElementaryTypeName",
               "src": "196:4:3",
@@ -2006,7 +2008,7 @@
             },
             "value": {
               "hexValue": "302e303135",
-              "id": 276,
+              "id": 288,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
@@ -2025,16 +2027,16 @@
           },
           {
             "canonicalName": "InsuranceStore.Insurance",
-            "id": 283,
+            "id": 295,
             "members": [
               {
                 "constant": false,
-                "id": 279,
+                "id": 291,
                 "mutability": "mutable",
                 "name": "expiryDate",
                 "nameLocation": "288:10:3",
                 "nodeType": "VariableDeclaration",
-                "scope": 283,
+                "scope": 295,
                 "src": "283:15:3",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -2043,7 +2045,7 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 278,
+                  "id": 290,
                   "name": "uint",
                   "nodeType": "ElementaryTypeName",
                   "src": "283:4:3",
@@ -2056,33 +2058,33 @@
               },
               {
                 "constant": false,
-                "id": 282,
+                "id": 294,
                 "mutability": "mutable",
                 "name": "insuranceType",
                 "nameLocation": "323:13:3",
                 "nodeType": "VariableDeclaration",
-                "scope": 283,
+                "scope": 295,
                 "src": "309:27:3",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_enum$_InsuranceType_$271",
+                  "typeIdentifier": "t_enum$_InsuranceType_$283",
                   "typeString": "enum InsuranceStore.InsuranceType"
                 },
                 "typeName": {
-                  "id": 281,
+                  "id": 293,
                   "nodeType": "UserDefinedTypeName",
                   "pathNode": {
-                    "id": 280,
+                    "id": 292,
                     "name": "InsuranceType",
                     "nodeType": "IdentifierPath",
-                    "referencedDeclaration": 271,
+                    "referencedDeclaration": 283,
                     "src": "309:13:3"
                   },
-                  "referencedDeclaration": 271,
+                  "referencedDeclaration": 283,
                   "src": "309:13:3",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_enum$_InsuranceType_$271",
+                    "typeIdentifier": "t_enum$_InsuranceType_$283",
                     "typeString": "enum InsuranceStore.InsuranceType"
                   }
                 },
@@ -2092,29 +2094,29 @@
             "name": "Insurance",
             "nameLocation": "262:9:3",
             "nodeType": "StructDefinition",
-            "scope": 354,
+            "scope": 366,
             "src": "255:89:3",
             "visibility": "public"
           },
           {
             "constant": false,
-            "id": 288,
+            "id": 300,
             "mutability": "mutable",
             "name": "personToInsurance",
             "nameLocation": "382:17:3",
             "nodeType": "VariableDeclaration",
-            "scope": 354,
+            "scope": 366,
             "src": "352:47:3",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Insurance_$283_storage_$",
+              "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Insurance_$295_storage_$",
               "typeString": "mapping(address => struct InsuranceStore.Insurance)"
             },
             "typeName": {
-              "id": 287,
+              "id": 299,
               "keyType": {
-                "id": 284,
+                "id": 296,
                 "name": "address",
                 "nodeType": "ElementaryTypeName",
                 "src": "360:7:3",
@@ -2126,23 +2128,23 @@
               "nodeType": "Mapping",
               "src": "352:29:3",
               "typeDescriptions": {
-                "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Insurance_$283_storage_$",
+                "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Insurance_$295_storage_$",
                 "typeString": "mapping(address => struct InsuranceStore.Insurance)"
               },
               "valueType": {
-                "id": 286,
+                "id": 298,
                 "nodeType": "UserDefinedTypeName",
                 "pathNode": {
-                  "id": 285,
+                  "id": 297,
                   "name": "Insurance",
                   "nodeType": "IdentifierPath",
-                  "referencedDeclaration": 283,
+                  "referencedDeclaration": 295,
                   "src": "371:9:3"
                 },
-                "referencedDeclaration": 283,
+                "referencedDeclaration": 295,
                 "src": "371:9:3",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_struct$_Insurance_$283_storage_ptr",
+                  "typeIdentifier": "t_struct$_Insurance_$295_storage_ptr",
                   "typeString": "struct InsuranceStore.Insurance"
                 }
               }
@@ -2151,30 +2153,30 @@
           },
           {
             "body": {
-              "id": 339,
+              "id": 351,
               "nodeType": "Block",
               "src": "480:359:3",
               "statements": [
                 {
                   "condition": {
                     "commonType": {
-                      "typeIdentifier": "t_enum$_InsuranceType_$271",
+                      "typeIdentifier": "t_enum$_InsuranceType_$283",
                       "typeString": "enum InsuranceStore.InsuranceType"
                     },
-                    "id": 299,
+                    "id": 311,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
-                      "id": 296,
+                      "id": 308,
                       "name": "_type",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 293,
+                      "referencedDeclaration": 305,
                       "src": "495:5:3",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_InsuranceType_$271",
+                        "typeIdentifier": "t_enum$_InsuranceType_$283",
                         "typeString": "enum InsuranceStore.InsuranceType"
                       }
                     },
@@ -2182,28 +2184,28 @@
                     "operator": "==",
                     "rightExpression": {
                       "expression": {
-                        "id": 297,
+                        "id": 309,
                         "name": "InsuranceType",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 271,
+                        "referencedDeclaration": 283,
                         "src": "504:13:3",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_enum$_InsuranceType_$271_$",
+                          "typeIdentifier": "t_type$_t_enum$_InsuranceType_$283_$",
                           "typeString": "type(enum InsuranceStore.InsuranceType)"
                         }
                       },
-                      "id": 298,
+                      "id": 310,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
                       "lValueRequested": false,
                       "memberName": "CLASSIC",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 269,
+                      "referencedDeclaration": 281,
                       "src": "504:21:3",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_InsuranceType_$271",
+                        "typeIdentifier": "t_enum$_InsuranceType_$283",
                         "typeString": "enum InsuranceStore.InsuranceType"
                       }
                     },
@@ -2216,23 +2218,23 @@
                   "falseBody": {
                     "condition": {
                       "commonType": {
-                        "typeIdentifier": "t_enum$_InsuranceType_$271",
+                        "typeIdentifier": "t_enum$_InsuranceType_$283",
                         "typeString": "enum InsuranceStore.InsuranceType"
                       },
-                      "id": 313,
+                      "id": 325,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "leftExpression": {
-                        "id": 310,
+                        "id": 322,
                         "name": "_type",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 293,
+                        "referencedDeclaration": 305,
                         "src": "618:5:3",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_enum$_InsuranceType_$271",
+                          "typeIdentifier": "t_enum$_InsuranceType_$283",
                           "typeString": "enum InsuranceStore.InsuranceType"
                         }
                       },
@@ -2240,28 +2242,28 @@
                       "operator": "==",
                       "rightExpression": {
                         "expression": {
-                          "id": 311,
+                          "id": 323,
                           "name": "InsuranceType",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 271,
+                          "referencedDeclaration": 283,
                           "src": "627:13:3",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_type$_t_enum$_InsuranceType_$271_$",
+                            "typeIdentifier": "t_type$_t_enum$_InsuranceType_$283_$",
                             "typeString": "type(enum InsuranceStore.InsuranceType)"
                           }
                         },
-                        "id": 312,
+                        "id": 324,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
                         "lValueRequested": false,
                         "memberName": "PREMIUM",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 270,
+                        "referencedDeclaration": 282,
                         "src": "627:21:3",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_enum$_InsuranceType_$271",
+                          "typeIdentifier": "t_enum$_InsuranceType_$283",
                           "typeString": "enum InsuranceStore.InsuranceType"
                         }
                       },
@@ -2271,11 +2273,11 @@
                         "typeString": "bool"
                       }
                     },
-                    "id": 324,
+                    "id": 336,
                     "nodeType": "IfStatement",
                     "src": "614:124:3",
                     "trueBody": {
-                      "id": 323,
+                      "id": 335,
                       "nodeType": "Block",
                       "src": "650:88:3",
                       "statements": [
@@ -2287,7 +2289,7 @@
                                   "typeIdentifier": "t_uint256",
                                   "typeString": "uint256"
                                 },
-                                "id": 320,
+                                "id": 332,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": false,
@@ -2297,17 +2299,17 @@
                                     "typeIdentifier": "t_uint256",
                                     "typeString": "uint256"
                                   },
-                                  "id": 317,
+                                  "id": 329,
                                   "isConstant": false,
                                   "isLValue": false,
                                   "isPure": false,
                                   "lValueRequested": false,
                                   "leftExpression": {
-                                    "id": 315,
+                                    "id": 327,
                                     "name": "_days",
                                     "nodeType": "Identifier",
                                     "overloadedDeclarations": [],
-                                    "referencedDeclaration": 290,
+                                    "referencedDeclaration": 302,
                                     "src": "673:5:3",
                                     "typeDescriptions": {
                                       "typeIdentifier": "t_uint256",
@@ -2317,11 +2319,11 @@
                                   "nodeType": "BinaryOperation",
                                   "operator": "*",
                                   "rightExpression": {
-                                    "id": 316,
+                                    "id": 328,
                                     "name": "basicDaylyInsurancePremiumPrice",
                                     "nodeType": "Identifier",
                                     "overloadedDeclarations": [],
-                                    "referencedDeclaration": 277,
+                                    "referencedDeclaration": 289,
                                     "src": "681:31:3",
                                     "typeDescriptions": {
                                       "typeIdentifier": "t_uint256",
@@ -2338,7 +2340,7 @@
                                 "operator": "==",
                                 "rightExpression": {
                                   "expression": {
-                                    "id": 318,
+                                    "id": 330,
                                     "name": "msg",
                                     "nodeType": "Identifier",
                                     "overloadedDeclarations": [],
@@ -2349,7 +2351,7 @@
                                       "typeString": "msg"
                                     }
                                   },
-                                  "id": 319,
+                                  "id": 331,
                                   "isConstant": false,
                                   "isLValue": false,
                                   "isPure": false,
@@ -2376,7 +2378,7 @@
                                   "typeString": "bool"
                                 }
                               ],
-                              "id": 314,
+                              "id": 326,
                               "name": "require",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [
@@ -2390,7 +2392,7 @@
                                 "typeString": "function (bool) pure"
                               }
                             },
-                            "id": 321,
+                            "id": 333,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
@@ -2405,18 +2407,18 @@
                               "typeString": "tuple()"
                             }
                           },
-                          "id": 322,
+                          "id": 334,
                           "nodeType": "ExpressionStatement",
                           "src": "665:61:3"
                         }
                       ]
                     }
                   },
-                  "id": 325,
+                  "id": 337,
                   "nodeType": "IfStatement",
                   "src": "491:247:3",
                   "trueBody": {
-                    "id": 309,
+                    "id": 321,
                     "nodeType": "Block",
                     "src": "527:81:3",
                     "statements": [
@@ -2428,7 +2430,7 @@
                                 "typeIdentifier": "t_uint256",
                                 "typeString": "uint256"
                               },
-                              "id": 306,
+                              "id": 318,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": false,
@@ -2438,17 +2440,17 @@
                                   "typeIdentifier": "t_uint256",
                                   "typeString": "uint256"
                                 },
-                                "id": 303,
+                                "id": 315,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": false,
                                 "lValueRequested": false,
                                 "leftExpression": {
-                                  "id": 301,
+                                  "id": 313,
                                   "name": "_days",
                                   "nodeType": "Identifier",
                                   "overloadedDeclarations": [],
-                                  "referencedDeclaration": 290,
+                                  "referencedDeclaration": 302,
                                   "src": "550:5:3",
                                   "typeDescriptions": {
                                     "typeIdentifier": "t_uint256",
@@ -2458,11 +2460,11 @@
                                 "nodeType": "BinaryOperation",
                                 "operator": "*",
                                 "rightExpression": {
-                                  "id": 302,
+                                  "id": 314,
                                   "name": "basicDaylyInsurancePrice",
                                   "nodeType": "Identifier",
                                   "overloadedDeclarations": [],
-                                  "referencedDeclaration": 274,
+                                  "referencedDeclaration": 286,
                                   "src": "558:24:3",
                                   "typeDescriptions": {
                                     "typeIdentifier": "t_uint256",
@@ -2479,7 +2481,7 @@
                               "operator": "==",
                               "rightExpression": {
                                 "expression": {
-                                  "id": 304,
+                                  "id": 316,
                                   "name": "msg",
                                   "nodeType": "Identifier",
                                   "overloadedDeclarations": [],
@@ -2490,7 +2492,7 @@
                                     "typeString": "msg"
                                   }
                                 },
-                                "id": 305,
+                                "id": 317,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": false,
@@ -2517,7 +2519,7 @@
                                 "typeString": "bool"
                               }
                             ],
-                            "id": 300,
+                            "id": 312,
                             "name": "require",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [
@@ -2531,7 +2533,7 @@
                               "typeString": "function (bool) pure"
                             }
                           },
-                          "id": 307,
+                          "id": 319,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -2546,7 +2548,7 @@
                             "typeString": "tuple()"
                           }
                         },
-                        "id": 308,
+                        "id": 320,
                         "nodeType": "ExpressionStatement",
                         "src": "542:54:3"
                       }
@@ -2555,28 +2557,28 @@
                 },
                 {
                   "expression": {
-                    "id": 337,
+                    "id": 349,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "baseExpression": {
-                        "id": 326,
+                        "id": 338,
                         "name": "personToInsurance",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 288,
+                        "referencedDeclaration": 300,
                         "src": "758:17:3",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Insurance_$283_storage_$",
+                          "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Insurance_$295_storage_$",
                           "typeString": "mapping(address => struct InsuranceStore.Insurance storage ref)"
                         }
                       },
-                      "id": 329,
+                      "id": 341,
                       "indexExpression": {
                         "expression": {
-                          "id": 327,
+                          "id": 339,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
@@ -2587,7 +2589,7 @@
                             "typeString": "msg"
                           }
                         },
-                        "id": 328,
+                        "id": 340,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -2607,7 +2609,7 @@
                       "nodeType": "IndexAccess",
                       "src": "758:29:3",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Insurance_$283_storage",
+                        "typeIdentifier": "t_struct$_Insurance_$295_storage",
                         "typeString": "struct InsuranceStore.Insurance storage ref"
                       }
                     },
@@ -2620,14 +2622,14 @@
                             "typeIdentifier": "t_uint256",
                             "typeString": "uint256"
                           },
-                          "id": 334,
+                          "id": 346,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
                           "lValueRequested": false,
                           "leftExpression": {
                             "expression": {
-                              "id": 331,
+                              "id": 343,
                               "name": "block",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
@@ -2638,7 +2640,7 @@
                                 "typeString": "block"
                               }
                             },
-                            "id": 332,
+                            "id": 344,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
@@ -2654,11 +2656,11 @@
                           "nodeType": "BinaryOperation",
                           "operator": "+",
                           "rightExpression": {
-                            "id": 333,
+                            "id": 345,
                             "name": "_days",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 290,
+                            "referencedDeclaration": 302,
                             "src": "818:5:3",
                             "typeDescriptions": {
                               "typeIdentifier": "t_uint256",
@@ -2672,14 +2674,14 @@
                           }
                         },
                         {
-                          "id": 335,
+                          "id": 347,
                           "name": "_type",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 293,
+                          "referencedDeclaration": 305,
                           "src": "825:5:3",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_enum$_InsuranceType_$271",
+                            "typeIdentifier": "t_enum$_InsuranceType_$283",
                             "typeString": "enum InsuranceStore.InsuranceType"
                           }
                         }
@@ -2691,22 +2693,22 @@
                             "typeString": "uint256"
                           },
                           {
-                            "typeIdentifier": "t_enum$_InsuranceType_$271",
+                            "typeIdentifier": "t_enum$_InsuranceType_$283",
                             "typeString": "enum InsuranceStore.InsuranceType"
                           }
                         ],
-                        "id": 330,
+                        "id": 342,
                         "name": "Insurance",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 283,
+                        "referencedDeclaration": 295,
                         "src": "790:9:3",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_struct$_Insurance_$283_storage_ptr_$",
+                          "typeIdentifier": "t_type$_t_struct$_Insurance_$295_storage_ptr_$",
                           "typeString": "type(struct InsuranceStore.Insurance storage pointer)"
                         }
                       },
-                      "id": 336,
+                      "id": 348,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -2717,24 +2719,24 @@
                       "src": "790:41:3",
                       "tryCall": false,
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Insurance_$283_memory_ptr",
+                        "typeIdentifier": "t_struct$_Insurance_$295_memory_ptr",
                         "typeString": "struct InsuranceStore.Insurance memory"
                       }
                     },
                     "src": "758:73:3",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Insurance_$283_storage",
+                      "typeIdentifier": "t_struct$_Insurance_$295_storage",
                       "typeString": "struct InsuranceStore.Insurance storage ref"
                     }
                   },
-                  "id": 338,
+                  "id": 350,
                   "nodeType": "ExpressionStatement",
                   "src": "758:73:3"
                 }
               ]
             },
             "functionSelector": "f51e6b37",
-            "id": 340,
+            "id": 352,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -2742,17 +2744,17 @@
             "nameLocation": "417:12:3",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 294,
+              "id": 306,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 290,
+                  "id": 302,
                   "mutability": "mutable",
                   "name": "_days",
                   "nameLocation": "435:5:3",
                   "nodeType": "VariableDeclaration",
-                  "scope": 340,
+                  "scope": 352,
                   "src": "430:10:3",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2761,7 +2763,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 289,
+                    "id": 301,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "430:4:3",
@@ -2774,33 +2776,33 @@
                 },
                 {
                   "constant": false,
-                  "id": 293,
+                  "id": 305,
                   "mutability": "mutable",
                   "name": "_type",
                   "nameLocation": "456:5:3",
                   "nodeType": "VariableDeclaration",
-                  "scope": 340,
+                  "scope": 352,
                   "src": "442:19:3",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_enum$_InsuranceType_$271",
+                    "typeIdentifier": "t_enum$_InsuranceType_$283",
                     "typeString": "enum InsuranceStore.InsuranceType"
                   },
                   "typeName": {
-                    "id": 292,
+                    "id": 304,
                     "nodeType": "UserDefinedTypeName",
                     "pathNode": {
-                      "id": 291,
+                      "id": 303,
                       "name": "InsuranceType",
                       "nodeType": "IdentifierPath",
-                      "referencedDeclaration": 271,
+                      "referencedDeclaration": 283,
                       "src": "442:13:3"
                     },
-                    "referencedDeclaration": 271,
+                    "referencedDeclaration": 283,
                     "src": "442:13:3",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_enum$_InsuranceType_$271",
+                      "typeIdentifier": "t_enum$_InsuranceType_$283",
                       "typeString": "enum InsuranceStore.InsuranceType"
                     }
                   },
@@ -2810,12 +2812,12 @@
               "src": "429:33:3"
             },
             "returnParameters": {
-              "id": 295,
+              "id": 307,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "480:0:3"
             },
-            "scope": 354,
+            "scope": 366,
             "src": "408:431:3",
             "stateMutability": "payable",
             "virtual": false,
@@ -2823,7 +2825,7 @@
           },
           {
             "body": {
-              "id": 352,
+              "id": 364,
               "nodeType": "Block",
               "src": "929:63:3",
               "statements": [
@@ -2831,24 +2833,24 @@
                   "expression": {
                     "expression": {
                       "baseExpression": {
-                        "id": 347,
+                        "id": 359,
                         "name": "personToInsurance",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 288,
+                        "referencedDeclaration": 300,
                         "src": "947:17:3",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Insurance_$283_storage_$",
+                          "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Insurance_$295_storage_$",
                           "typeString": "mapping(address => struct InsuranceStore.Insurance storage ref)"
                         }
                       },
-                      "id": 349,
+                      "id": 361,
                       "indexExpression": {
-                        "id": 348,
+                        "id": 360,
                         "name": "_person",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 342,
+                        "referencedDeclaration": 354,
                         "src": "965:7:3",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -2862,33 +2864,33 @@
                       "nodeType": "IndexAccess",
                       "src": "947:26:3",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Insurance_$283_storage",
+                        "typeIdentifier": "t_struct$_Insurance_$295_storage",
                         "typeString": "struct InsuranceStore.Insurance storage ref"
                       }
                     },
-                    "id": 350,
+                    "id": 362,
                     "isConstant": false,
                     "isLValue": true,
                     "isPure": false,
                     "lValueRequested": false,
                     "memberName": "expiryDate",
                     "nodeType": "MemberAccess",
-                    "referencedDeclaration": 279,
+                    "referencedDeclaration": 291,
                     "src": "947:37:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "functionReturnParameters": 346,
-                  "id": 351,
+                  "functionReturnParameters": 358,
+                  "id": 363,
                   "nodeType": "Return",
                   "src": "940:44:3"
                 }
               ]
             },
             "functionSelector": "3f1c55fc",
-            "id": 353,
+            "id": 365,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -2896,17 +2898,17 @@
             "nameLocation": "856:16:3",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 343,
+              "id": 355,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 342,
+                  "id": 354,
                   "mutability": "mutable",
                   "name": "_person",
                   "nameLocation": "881:7:3",
                   "nodeType": "VariableDeclaration",
-                  "scope": 353,
+                  "scope": 365,
                   "src": "873:15:3",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2915,7 +2917,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 341,
+                    "id": 353,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "873:7:3",
@@ -2931,17 +2933,17 @@
               "src": "872:17:3"
             },
             "returnParameters": {
-              "id": 346,
+              "id": 358,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 345,
+                  "id": 357,
                   "mutability": "mutable",
                   "name": "expiryDate",
                   "nameLocation": "917:10:3",
                   "nodeType": "VariableDeclaration",
-                  "scope": 353,
+                  "scope": 365,
                   "src": "912:15:3",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2950,7 +2952,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 344,
+                    "id": 356,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "912:4:3",
@@ -2964,14 +2966,14 @@
               ],
               "src": "911:17:3"
             },
-            "scope": 354,
+            "scope": 366,
             "src": "847:145:3",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 355,
+        "scope": 367,
         "src": "69:926:3"
       }
     ],
@@ -2981,15 +2983,15 @@
     "absolutePath": "project:/contracts/Insurance.sol",
     "exportedSymbols": {
       "InsuranceStore": [
-        354
+        366
       ]
     },
-    "id": 355,
+    "id": 367,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 268,
+        "id": 280,
         "literals": [
           "solidity",
           ">=",
@@ -3008,9 +3010,9 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "id": 354,
+        "id": 366,
         "linearizedBaseContracts": [
-          354
+          366
         ],
         "name": "InsuranceStore",
         "nameLocation": "78:14:3",
@@ -3018,17 +3020,17 @@
         "nodes": [
           {
             "canonicalName": "InsuranceStore.InsuranceType",
-            "id": 271,
+            "id": 283,
             "members": [
               {
-                "id": 269,
+                "id": 281,
                 "name": "CLASSIC",
                 "nameLocation": "121:7:3",
                 "nodeType": "EnumValue",
                 "src": "121:7:3"
               },
               {
-                "id": 270,
+                "id": 282,
                 "name": "PREMIUM",
                 "nameLocation": "130:7:3",
                 "nodeType": "EnumValue",
@@ -3042,12 +3044,12 @@
           },
           {
             "constant": false,
-            "id": 274,
+            "id": 286,
             "mutability": "mutable",
             "name": "basicDaylyInsurancePrice",
             "nameLocation": "152:24:3",
             "nodeType": "VariableDeclaration",
-            "scope": 354,
+            "scope": 366,
             "src": "147:42:3",
             "stateVariable": true,
             "storageLocation": "default",
@@ -3056,7 +3058,7 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 272,
+              "id": 284,
               "name": "uint",
               "nodeType": "ElementaryTypeName",
               "src": "147:4:3",
@@ -3067,7 +3069,7 @@
             },
             "value": {
               "hexValue": "302e3031",
-              "id": 273,
+              "id": 285,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
@@ -3086,12 +3088,12 @@
           },
           {
             "constant": false,
-            "id": 277,
+            "id": 289,
             "mutability": "mutable",
             "name": "basicDaylyInsurancePremiumPrice",
             "nameLocation": "201:31:3",
             "nodeType": "VariableDeclaration",
-            "scope": 354,
+            "scope": 366,
             "src": "196:50:3",
             "stateVariable": true,
             "storageLocation": "default",
@@ -3100,7 +3102,7 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 275,
+              "id": 287,
               "name": "uint",
               "nodeType": "ElementaryTypeName",
               "src": "196:4:3",
@@ -3111,7 +3113,7 @@
             },
             "value": {
               "hexValue": "302e303135",
-              "id": 276,
+              "id": 288,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
@@ -3130,16 +3132,16 @@
           },
           {
             "canonicalName": "InsuranceStore.Insurance",
-            "id": 283,
+            "id": 295,
             "members": [
               {
                 "constant": false,
-                "id": 279,
+                "id": 291,
                 "mutability": "mutable",
                 "name": "expiryDate",
                 "nameLocation": "288:10:3",
                 "nodeType": "VariableDeclaration",
-                "scope": 283,
+                "scope": 295,
                 "src": "283:15:3",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -3148,7 +3150,7 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 278,
+                  "id": 290,
                   "name": "uint",
                   "nodeType": "ElementaryTypeName",
                   "src": "283:4:3",
@@ -3161,33 +3163,33 @@
               },
               {
                 "constant": false,
-                "id": 282,
+                "id": 294,
                 "mutability": "mutable",
                 "name": "insuranceType",
                 "nameLocation": "323:13:3",
                 "nodeType": "VariableDeclaration",
-                "scope": 283,
+                "scope": 295,
                 "src": "309:27:3",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_enum$_InsuranceType_$271",
+                  "typeIdentifier": "t_enum$_InsuranceType_$283",
                   "typeString": "enum InsuranceStore.InsuranceType"
                 },
                 "typeName": {
-                  "id": 281,
+                  "id": 293,
                   "nodeType": "UserDefinedTypeName",
                   "pathNode": {
-                    "id": 280,
+                    "id": 292,
                     "name": "InsuranceType",
                     "nodeType": "IdentifierPath",
-                    "referencedDeclaration": 271,
+                    "referencedDeclaration": 283,
                     "src": "309:13:3"
                   },
-                  "referencedDeclaration": 271,
+                  "referencedDeclaration": 283,
                   "src": "309:13:3",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_enum$_InsuranceType_$271",
+                    "typeIdentifier": "t_enum$_InsuranceType_$283",
                     "typeString": "enum InsuranceStore.InsuranceType"
                   }
                 },
@@ -3197,29 +3199,29 @@
             "name": "Insurance",
             "nameLocation": "262:9:3",
             "nodeType": "StructDefinition",
-            "scope": 354,
+            "scope": 366,
             "src": "255:89:3",
             "visibility": "public"
           },
           {
             "constant": false,
-            "id": 288,
+            "id": 300,
             "mutability": "mutable",
             "name": "personToInsurance",
             "nameLocation": "382:17:3",
             "nodeType": "VariableDeclaration",
-            "scope": 354,
+            "scope": 366,
             "src": "352:47:3",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Insurance_$283_storage_$",
+              "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Insurance_$295_storage_$",
               "typeString": "mapping(address => struct InsuranceStore.Insurance)"
             },
             "typeName": {
-              "id": 287,
+              "id": 299,
               "keyType": {
-                "id": 284,
+                "id": 296,
                 "name": "address",
                 "nodeType": "ElementaryTypeName",
                 "src": "360:7:3",
@@ -3231,23 +3233,23 @@
               "nodeType": "Mapping",
               "src": "352:29:3",
               "typeDescriptions": {
-                "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Insurance_$283_storage_$",
+                "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Insurance_$295_storage_$",
                 "typeString": "mapping(address => struct InsuranceStore.Insurance)"
               },
               "valueType": {
-                "id": 286,
+                "id": 298,
                 "nodeType": "UserDefinedTypeName",
                 "pathNode": {
-                  "id": 285,
+                  "id": 297,
                   "name": "Insurance",
                   "nodeType": "IdentifierPath",
-                  "referencedDeclaration": 283,
+                  "referencedDeclaration": 295,
                   "src": "371:9:3"
                 },
-                "referencedDeclaration": 283,
+                "referencedDeclaration": 295,
                 "src": "371:9:3",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_struct$_Insurance_$283_storage_ptr",
+                  "typeIdentifier": "t_struct$_Insurance_$295_storage_ptr",
                   "typeString": "struct InsuranceStore.Insurance"
                 }
               }
@@ -3256,30 +3258,30 @@
           },
           {
             "body": {
-              "id": 339,
+              "id": 351,
               "nodeType": "Block",
               "src": "480:359:3",
               "statements": [
                 {
                   "condition": {
                     "commonType": {
-                      "typeIdentifier": "t_enum$_InsuranceType_$271",
+                      "typeIdentifier": "t_enum$_InsuranceType_$283",
                       "typeString": "enum InsuranceStore.InsuranceType"
                     },
-                    "id": 299,
+                    "id": 311,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
-                      "id": 296,
+                      "id": 308,
                       "name": "_type",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 293,
+                      "referencedDeclaration": 305,
                       "src": "495:5:3",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_InsuranceType_$271",
+                        "typeIdentifier": "t_enum$_InsuranceType_$283",
                         "typeString": "enum InsuranceStore.InsuranceType"
                       }
                     },
@@ -3287,28 +3289,28 @@
                     "operator": "==",
                     "rightExpression": {
                       "expression": {
-                        "id": 297,
+                        "id": 309,
                         "name": "InsuranceType",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 271,
+                        "referencedDeclaration": 283,
                         "src": "504:13:3",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_enum$_InsuranceType_$271_$",
+                          "typeIdentifier": "t_type$_t_enum$_InsuranceType_$283_$",
                           "typeString": "type(enum InsuranceStore.InsuranceType)"
                         }
                       },
-                      "id": 298,
+                      "id": 310,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
                       "lValueRequested": false,
                       "memberName": "CLASSIC",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 269,
+                      "referencedDeclaration": 281,
                       "src": "504:21:3",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_InsuranceType_$271",
+                        "typeIdentifier": "t_enum$_InsuranceType_$283",
                         "typeString": "enum InsuranceStore.InsuranceType"
                       }
                     },
@@ -3321,23 +3323,23 @@
                   "falseBody": {
                     "condition": {
                       "commonType": {
-                        "typeIdentifier": "t_enum$_InsuranceType_$271",
+                        "typeIdentifier": "t_enum$_InsuranceType_$283",
                         "typeString": "enum InsuranceStore.InsuranceType"
                       },
-                      "id": 313,
+                      "id": 325,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "leftExpression": {
-                        "id": 310,
+                        "id": 322,
                         "name": "_type",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 293,
+                        "referencedDeclaration": 305,
                         "src": "618:5:3",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_enum$_InsuranceType_$271",
+                          "typeIdentifier": "t_enum$_InsuranceType_$283",
                           "typeString": "enum InsuranceStore.InsuranceType"
                         }
                       },
@@ -3345,28 +3347,28 @@
                       "operator": "==",
                       "rightExpression": {
                         "expression": {
-                          "id": 311,
+                          "id": 323,
                           "name": "InsuranceType",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 271,
+                          "referencedDeclaration": 283,
                           "src": "627:13:3",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_type$_t_enum$_InsuranceType_$271_$",
+                            "typeIdentifier": "t_type$_t_enum$_InsuranceType_$283_$",
                             "typeString": "type(enum InsuranceStore.InsuranceType)"
                           }
                         },
-                        "id": 312,
+                        "id": 324,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
                         "lValueRequested": false,
                         "memberName": "PREMIUM",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 270,
+                        "referencedDeclaration": 282,
                         "src": "627:21:3",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_enum$_InsuranceType_$271",
+                          "typeIdentifier": "t_enum$_InsuranceType_$283",
                           "typeString": "enum InsuranceStore.InsuranceType"
                         }
                       },
@@ -3376,11 +3378,11 @@
                         "typeString": "bool"
                       }
                     },
-                    "id": 324,
+                    "id": 336,
                     "nodeType": "IfStatement",
                     "src": "614:124:3",
                     "trueBody": {
-                      "id": 323,
+                      "id": 335,
                       "nodeType": "Block",
                       "src": "650:88:3",
                       "statements": [
@@ -3392,7 +3394,7 @@
                                   "typeIdentifier": "t_uint256",
                                   "typeString": "uint256"
                                 },
-                                "id": 320,
+                                "id": 332,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": false,
@@ -3402,17 +3404,17 @@
                                     "typeIdentifier": "t_uint256",
                                     "typeString": "uint256"
                                   },
-                                  "id": 317,
+                                  "id": 329,
                                   "isConstant": false,
                                   "isLValue": false,
                                   "isPure": false,
                                   "lValueRequested": false,
                                   "leftExpression": {
-                                    "id": 315,
+                                    "id": 327,
                                     "name": "_days",
                                     "nodeType": "Identifier",
                                     "overloadedDeclarations": [],
-                                    "referencedDeclaration": 290,
+                                    "referencedDeclaration": 302,
                                     "src": "673:5:3",
                                     "typeDescriptions": {
                                       "typeIdentifier": "t_uint256",
@@ -3422,11 +3424,11 @@
                                   "nodeType": "BinaryOperation",
                                   "operator": "*",
                                   "rightExpression": {
-                                    "id": 316,
+                                    "id": 328,
                                     "name": "basicDaylyInsurancePremiumPrice",
                                     "nodeType": "Identifier",
                                     "overloadedDeclarations": [],
-                                    "referencedDeclaration": 277,
+                                    "referencedDeclaration": 289,
                                     "src": "681:31:3",
                                     "typeDescriptions": {
                                       "typeIdentifier": "t_uint256",
@@ -3443,7 +3445,7 @@
                                 "operator": "==",
                                 "rightExpression": {
                                   "expression": {
-                                    "id": 318,
+                                    "id": 330,
                                     "name": "msg",
                                     "nodeType": "Identifier",
                                     "overloadedDeclarations": [],
@@ -3454,7 +3456,7 @@
                                       "typeString": "msg"
                                     }
                                   },
-                                  "id": 319,
+                                  "id": 331,
                                   "isConstant": false,
                                   "isLValue": false,
                                   "isPure": false,
@@ -3481,7 +3483,7 @@
                                   "typeString": "bool"
                                 }
                               ],
-                              "id": 314,
+                              "id": 326,
                               "name": "require",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [
@@ -3495,7 +3497,7 @@
                                 "typeString": "function (bool) pure"
                               }
                             },
-                            "id": 321,
+                            "id": 333,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
@@ -3510,18 +3512,18 @@
                               "typeString": "tuple()"
                             }
                           },
-                          "id": 322,
+                          "id": 334,
                           "nodeType": "ExpressionStatement",
                           "src": "665:61:3"
                         }
                       ]
                     }
                   },
-                  "id": 325,
+                  "id": 337,
                   "nodeType": "IfStatement",
                   "src": "491:247:3",
                   "trueBody": {
-                    "id": 309,
+                    "id": 321,
                     "nodeType": "Block",
                     "src": "527:81:3",
                     "statements": [
@@ -3533,7 +3535,7 @@
                                 "typeIdentifier": "t_uint256",
                                 "typeString": "uint256"
                               },
-                              "id": 306,
+                              "id": 318,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": false,
@@ -3543,17 +3545,17 @@
                                   "typeIdentifier": "t_uint256",
                                   "typeString": "uint256"
                                 },
-                                "id": 303,
+                                "id": 315,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": false,
                                 "lValueRequested": false,
                                 "leftExpression": {
-                                  "id": 301,
+                                  "id": 313,
                                   "name": "_days",
                                   "nodeType": "Identifier",
                                   "overloadedDeclarations": [],
-                                  "referencedDeclaration": 290,
+                                  "referencedDeclaration": 302,
                                   "src": "550:5:3",
                                   "typeDescriptions": {
                                     "typeIdentifier": "t_uint256",
@@ -3563,11 +3565,11 @@
                                 "nodeType": "BinaryOperation",
                                 "operator": "*",
                                 "rightExpression": {
-                                  "id": 302,
+                                  "id": 314,
                                   "name": "basicDaylyInsurancePrice",
                                   "nodeType": "Identifier",
                                   "overloadedDeclarations": [],
-                                  "referencedDeclaration": 274,
+                                  "referencedDeclaration": 286,
                                   "src": "558:24:3",
                                   "typeDescriptions": {
                                     "typeIdentifier": "t_uint256",
@@ -3584,7 +3586,7 @@
                               "operator": "==",
                               "rightExpression": {
                                 "expression": {
-                                  "id": 304,
+                                  "id": 316,
                                   "name": "msg",
                                   "nodeType": "Identifier",
                                   "overloadedDeclarations": [],
@@ -3595,7 +3597,7 @@
                                     "typeString": "msg"
                                   }
                                 },
-                                "id": 305,
+                                "id": 317,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": false,
@@ -3622,7 +3624,7 @@
                                 "typeString": "bool"
                               }
                             ],
-                            "id": 300,
+                            "id": 312,
                             "name": "require",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [
@@ -3636,7 +3638,7 @@
                               "typeString": "function (bool) pure"
                             }
                           },
-                          "id": 307,
+                          "id": 319,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -3651,7 +3653,7 @@
                             "typeString": "tuple()"
                           }
                         },
-                        "id": 308,
+                        "id": 320,
                         "nodeType": "ExpressionStatement",
                         "src": "542:54:3"
                       }
@@ -3660,28 +3662,28 @@
                 },
                 {
                   "expression": {
-                    "id": 337,
+                    "id": 349,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "baseExpression": {
-                        "id": 326,
+                        "id": 338,
                         "name": "personToInsurance",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 288,
+                        "referencedDeclaration": 300,
                         "src": "758:17:3",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Insurance_$283_storage_$",
+                          "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Insurance_$295_storage_$",
                           "typeString": "mapping(address => struct InsuranceStore.Insurance storage ref)"
                         }
                       },
-                      "id": 329,
+                      "id": 341,
                       "indexExpression": {
                         "expression": {
-                          "id": 327,
+                          "id": 339,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
@@ -3692,7 +3694,7 @@
                             "typeString": "msg"
                           }
                         },
-                        "id": 328,
+                        "id": 340,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -3712,7 +3714,7 @@
                       "nodeType": "IndexAccess",
                       "src": "758:29:3",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Insurance_$283_storage",
+                        "typeIdentifier": "t_struct$_Insurance_$295_storage",
                         "typeString": "struct InsuranceStore.Insurance storage ref"
                       }
                     },
@@ -3725,14 +3727,14 @@
                             "typeIdentifier": "t_uint256",
                             "typeString": "uint256"
                           },
-                          "id": 334,
+                          "id": 346,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
                           "lValueRequested": false,
                           "leftExpression": {
                             "expression": {
-                              "id": 331,
+                              "id": 343,
                               "name": "block",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
@@ -3743,7 +3745,7 @@
                                 "typeString": "block"
                               }
                             },
-                            "id": 332,
+                            "id": 344,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
@@ -3759,11 +3761,11 @@
                           "nodeType": "BinaryOperation",
                           "operator": "+",
                           "rightExpression": {
-                            "id": 333,
+                            "id": 345,
                             "name": "_days",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 290,
+                            "referencedDeclaration": 302,
                             "src": "818:5:3",
                             "typeDescriptions": {
                               "typeIdentifier": "t_uint256",
@@ -3777,14 +3779,14 @@
                           }
                         },
                         {
-                          "id": 335,
+                          "id": 347,
                           "name": "_type",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 293,
+                          "referencedDeclaration": 305,
                           "src": "825:5:3",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_enum$_InsuranceType_$271",
+                            "typeIdentifier": "t_enum$_InsuranceType_$283",
                             "typeString": "enum InsuranceStore.InsuranceType"
                           }
                         }
@@ -3796,22 +3798,22 @@
                             "typeString": "uint256"
                           },
                           {
-                            "typeIdentifier": "t_enum$_InsuranceType_$271",
+                            "typeIdentifier": "t_enum$_InsuranceType_$283",
                             "typeString": "enum InsuranceStore.InsuranceType"
                           }
                         ],
-                        "id": 330,
+                        "id": 342,
                         "name": "Insurance",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 283,
+                        "referencedDeclaration": 295,
                         "src": "790:9:3",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_struct$_Insurance_$283_storage_ptr_$",
+                          "typeIdentifier": "t_type$_t_struct$_Insurance_$295_storage_ptr_$",
                           "typeString": "type(struct InsuranceStore.Insurance storage pointer)"
                         }
                       },
-                      "id": 336,
+                      "id": 348,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -3822,24 +3824,24 @@
                       "src": "790:41:3",
                       "tryCall": false,
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Insurance_$283_memory_ptr",
+                        "typeIdentifier": "t_struct$_Insurance_$295_memory_ptr",
                         "typeString": "struct InsuranceStore.Insurance memory"
                       }
                     },
                     "src": "758:73:3",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Insurance_$283_storage",
+                      "typeIdentifier": "t_struct$_Insurance_$295_storage",
                       "typeString": "struct InsuranceStore.Insurance storage ref"
                     }
                   },
-                  "id": 338,
+                  "id": 350,
                   "nodeType": "ExpressionStatement",
                   "src": "758:73:3"
                 }
               ]
             },
             "functionSelector": "f51e6b37",
-            "id": 340,
+            "id": 352,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -3847,17 +3849,17 @@
             "nameLocation": "417:12:3",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 294,
+              "id": 306,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 290,
+                  "id": 302,
                   "mutability": "mutable",
                   "name": "_days",
                   "nameLocation": "435:5:3",
                   "nodeType": "VariableDeclaration",
-                  "scope": 340,
+                  "scope": 352,
                   "src": "430:10:3",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3866,7 +3868,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 289,
+                    "id": 301,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "430:4:3",
@@ -3879,33 +3881,33 @@
                 },
                 {
                   "constant": false,
-                  "id": 293,
+                  "id": 305,
                   "mutability": "mutable",
                   "name": "_type",
                   "nameLocation": "456:5:3",
                   "nodeType": "VariableDeclaration",
-                  "scope": 340,
+                  "scope": 352,
                   "src": "442:19:3",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_enum$_InsuranceType_$271",
+                    "typeIdentifier": "t_enum$_InsuranceType_$283",
                     "typeString": "enum InsuranceStore.InsuranceType"
                   },
                   "typeName": {
-                    "id": 292,
+                    "id": 304,
                     "nodeType": "UserDefinedTypeName",
                     "pathNode": {
-                      "id": 291,
+                      "id": 303,
                       "name": "InsuranceType",
                       "nodeType": "IdentifierPath",
-                      "referencedDeclaration": 271,
+                      "referencedDeclaration": 283,
                       "src": "442:13:3"
                     },
-                    "referencedDeclaration": 271,
+                    "referencedDeclaration": 283,
                     "src": "442:13:3",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_enum$_InsuranceType_$271",
+                      "typeIdentifier": "t_enum$_InsuranceType_$283",
                       "typeString": "enum InsuranceStore.InsuranceType"
                     }
                   },
@@ -3915,12 +3917,12 @@
               "src": "429:33:3"
             },
             "returnParameters": {
-              "id": 295,
+              "id": 307,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "480:0:3"
             },
-            "scope": 354,
+            "scope": 366,
             "src": "408:431:3",
             "stateMutability": "payable",
             "virtual": false,
@@ -3928,7 +3930,7 @@
           },
           {
             "body": {
-              "id": 352,
+              "id": 364,
               "nodeType": "Block",
               "src": "929:63:3",
               "statements": [
@@ -3936,24 +3938,24 @@
                   "expression": {
                     "expression": {
                       "baseExpression": {
-                        "id": 347,
+                        "id": 359,
                         "name": "personToInsurance",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 288,
+                        "referencedDeclaration": 300,
                         "src": "947:17:3",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Insurance_$283_storage_$",
+                          "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Insurance_$295_storage_$",
                           "typeString": "mapping(address => struct InsuranceStore.Insurance storage ref)"
                         }
                       },
-                      "id": 349,
+                      "id": 361,
                       "indexExpression": {
-                        "id": 348,
+                        "id": 360,
                         "name": "_person",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 342,
+                        "referencedDeclaration": 354,
                         "src": "965:7:3",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -3967,33 +3969,33 @@
                       "nodeType": "IndexAccess",
                       "src": "947:26:3",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Insurance_$283_storage",
+                        "typeIdentifier": "t_struct$_Insurance_$295_storage",
                         "typeString": "struct InsuranceStore.Insurance storage ref"
                       }
                     },
-                    "id": 350,
+                    "id": 362,
                     "isConstant": false,
                     "isLValue": true,
                     "isPure": false,
                     "lValueRequested": false,
                     "memberName": "expiryDate",
                     "nodeType": "MemberAccess",
-                    "referencedDeclaration": 279,
+                    "referencedDeclaration": 291,
                     "src": "947:37:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "functionReturnParameters": 346,
-                  "id": 351,
+                  "functionReturnParameters": 358,
+                  "id": 363,
                   "nodeType": "Return",
                   "src": "940:44:3"
                 }
               ]
             },
             "functionSelector": "3f1c55fc",
-            "id": 353,
+            "id": 365,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -4001,17 +4003,17 @@
             "nameLocation": "856:16:3",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 343,
+              "id": 355,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 342,
+                  "id": 354,
                   "mutability": "mutable",
                   "name": "_person",
                   "nameLocation": "881:7:3",
                   "nodeType": "VariableDeclaration",
-                  "scope": 353,
+                  "scope": 365,
                   "src": "873:15:3",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4020,7 +4022,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 341,
+                    "id": 353,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "873:7:3",
@@ -4036,17 +4038,17 @@
               "src": "872:17:3"
             },
             "returnParameters": {
-              "id": 346,
+              "id": 358,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 345,
+                  "id": 357,
                   "mutability": "mutable",
                   "name": "expiryDate",
                   "nameLocation": "917:10:3",
                   "nodeType": "VariableDeclaration",
-                  "scope": 353,
+                  "scope": 365,
                   "src": "912:15:3",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4055,7 +4057,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 344,
+                    "id": 356,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "912:4:3",
@@ -4069,14 +4071,14 @@
               ],
               "src": "911:17:3"
             },
-            "scope": 354,
+            "scope": 366,
             "src": "847:145:3",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 355,
+        "scope": 367,
         "src": "69:926:3"
       }
     ],
@@ -4086,9 +4088,17 @@
     "name": "solc",
     "version": "0.8.2+commit.661d1103.Emscripten.clang"
   },
-  "networks": {},
+  "networks": {
+    "1337": {
+      "events": {},
+      "links": {},
+      "address": "0x1c77c8dcd8708A5865f79b281e7097F5fA677670",
+      "transactionHash": "0xf162e27dac0de67f0753ac80e54ab6bc461a3a0bb9fa9501a00b7cab5c408f20"
+    }
+  },
   "schemaVersion": "3.4.3",
-  "updatedAt": "2022-01-27T19:44:23.077Z",
+  "updatedAt": "2022-01-27T20:11:24.547Z",
+  "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
     "methods": {},

@@ -23,6 +23,10 @@ contract Customs is Ownable {
 
     mapping(address => Trip[]) personToHistory;
 
+    constructor(address _insuranceAddress) {
+        insuranceContract = InsuranceInterface(_insuranceAddress);
+    }
+
     function crossBorder(
         string memory _fromCity,
         string memory _fromCountry,
