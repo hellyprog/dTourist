@@ -5,7 +5,7 @@ pragma solidity >=0.4.22 <0.9.0;
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract Customs is Ownable {
-    event TravelerDataProcessed(bool success, string message);
+    event TravelerDataProcessed(bool success, string message, Trip trip);
 
     InsuranceInterface insuranceContract;
 
@@ -32,18 +32,20 @@ contract Customs is Ownable {
         string memory _fromCountry,
         string memory _toCity,
         string memory _toCountry) external {
-            if (isInsuranceUpToDate(msg.sender)) {
-                personToHistory[msg.sender].push(
-                    Trip(
-                        City(_fromCity, _fromCountry), 
-                        City(_toCity, _toCountry), 
-                        uint64(block.timestamp), 
-                        true
-                    )
-                );
-            }
+            bool insuranceCheckPassed = isInsuranceUpToDate(msg.sender);
+            Trip memory tripToCreate = Trip(
+                City(_fromCity, _fromCountry), 
+                City(_toCity, _toCountry), 
+                uint64(block.timestamp), 
+                insuranceCheckPassed
+            );
+            personToHistory[msg.sender].push(tripToCreate);
 
-            emit TravelerDataProcessed(true, "Border crossing is allowed");
+            if (insuranceCheckPassed) {
+                emit TravelerDataProcessed(true, "Border crossing is allowed", tripToCreate);
+            } else {
+                emit TravelerDataProcessed(false, "Border crossing is not allowed. Insurance needed", tripToCreate);
+            }
     }
 
     function setInsuranceContractAddress(address _address) external onlyOwner {
@@ -51,9 +53,7 @@ contract Customs is Ownable {
     }
 
     function isInsuranceUpToDate(address _person) private view returns (bool) {
-        uint expiryDate = insuranceContract.getInsuranceInfo(_person);
-
-        return expiryDate > block.timestamp;
+        return insuranceContract.checkInsurance(_person);
     }
 
     function getValueAtHistoryMapping(address userAddress) public view returns (Trip[] memory) {
@@ -62,7 +62,7 @@ contract Customs is Ownable {
 }
 
 interface InsuranceInterface {
-    function getInsuranceInfo(address _person) external view returns (
-        uint expipryDate
+    function checkInsurance(address _person) external view returns (
+        bool isInsuranceOk
     );
 }
