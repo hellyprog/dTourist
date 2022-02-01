@@ -21,7 +21,13 @@ contract InsuranceStore {
             require(_days * basicDaylyInsurancePremiumPrice == msg.value);
         }
         
-        personToInsurance[msg.sender] = Insurance(block.timestamp + (_days * 1 days), _type);
+        uint expiry = block.timestamp + (_days * 1 days);
+
+        if (_type == InsuranceType.PREMIUM && _days >= 7) {
+            expiry += 1 days;
+        }
+
+        personToInsurance[msg.sender] = Insurance(expiry, _type);
     }
 
     function getInsuranceInfo(address _person) external view returns(Insurance memory) {
