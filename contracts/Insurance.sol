@@ -15,6 +15,8 @@ contract InsuranceStore {
     mapping(address => Insurance) personToInsurance;
 
     function buyInsurance(uint _days, InsuranceType _type) external payable {
+        require(_days > 0);
+        
         if (_type == InsuranceType.CLASSIC) {
             require(_days * basicDaylyInsurancePrice == msg.value);
         } else if (_type == InsuranceType.PREMIUM) {

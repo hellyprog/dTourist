@@ -25,6 +25,14 @@ contract("InsuranceStore", (accounts) => {
             );
         });
 
+        it("cannot buy insurance for less than 1 day", async() => {
+            const premiumType = 1;
+
+            await truffleAssert.reverts(
+                insuranceStore.buyInsurance(0, premiumType, { from: accounts[0], value: 30000000000000000 })
+            );
+        });
+
         it("can buy Classic insurance and it will have correct expiry date", async() => {
             const classicType = 0;
 
