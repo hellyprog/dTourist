@@ -1,5 +1,6 @@
 const InsuranseStore = artifacts.require("InsuranceStore");
 const truffleAssert = require('truffle-assertions');
+//const web3 = require("web3");
 
 contract("InsuranceStore", (accounts) => {
     let insuranceStore;
@@ -71,5 +72,25 @@ contract("InsuranceStore", (accounts) => {
             assert.equal(insuranceExpiry.getFullYear(), expectedExpiryDate.getFullYear(), "Month date should be the same");
             assert.equal(insuranceExpiry.getDate(), expectedExpiryDate.getDate(), "Month date should be the same");
         });
+
+        it("can withdraw ether from contact using owner account", async() => {
+            const premiumType = 1;
+            await insuranceStore.buyInsurance(7, premiumType, { from: accounts[0], value: 105000000000000000 });
+            const contractBalance = await web3.eth.getBalance(insuranceStore.address);
+            const accountBalanceBeforeWithdraw = await web3.eth.getBalance(accounts[0]);
+            const txn = await insuranceStore.withdraw({from: accounts[0]});
+            const totalGas = await getTransactionGasCost(txn);
+            const accountBalanceAfterWithdraw = await web3.eth.getBalance(accounts[0]);
+            assert.equal(BigInt(accountBalanceAfterWithdraw), BigInt(accountBalanceBeforeWithdraw) + BigInt(contractBalance) - BigInt(totalGas));
+        });
     });
 });
+
+async function getTransactionGasCost(txn) {
+    let receipt = await web3.eth.getTransactionReceipt(txn["tx"]);
+    let gasUsed = receipt.gasUsed;
+    let transaction = await web3.eth.getTransaction(txn["tx"]);
+    let gasPrice = Number(transaction.gasPrice);
+
+    return BigInt(gasUsed * gasPrice);
+}
