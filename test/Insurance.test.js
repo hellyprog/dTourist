@@ -83,6 +83,12 @@ contract("InsuranceStore", (accounts) => {
             const accountBalanceAfterWithdraw = await web3.eth.getBalance(accounts[0]);
             assert.equal(BigInt(accountBalanceAfterWithdraw), BigInt(accountBalanceBeforeWithdraw) + BigInt(contractBalance) - BigInt(totalGas));
         });
+
+        it("cannot withdraw ether from contact using not owner account", async() => {
+            await truffleAssert.reverts(
+                insuranceStore.withdraw({from: accounts[3]})
+            );
+        });
     });
 });
 
