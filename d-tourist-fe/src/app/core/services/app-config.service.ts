@@ -27,6 +27,10 @@ export class AppConfigService {
     return this.appConfig.customsContractAddress;
   }
 
+  get insuranceStoreContractAddress() {
+    return this.appConfig.insuranceStoreContractAddress;
+  }
+
   get wsProvider() {
     return this.appConfig.wsProvider;
   }

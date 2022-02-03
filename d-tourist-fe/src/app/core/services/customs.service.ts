@@ -29,7 +29,7 @@ export class CustomsService {
 
     if (correctNetworkConnected) {
       const signer = this.provider.getSigner();
-      var contract = new ethers.Contract(this.customsContract.address, this.customsContract.abi, signer);
+      const contract = new ethers.Contract(this.customsContract.address, this.customsContract.abi, signer);
       return contract['crossBorder'](fromCity.name, fromCity.country, toCity.name, toCity.country);
     }
   }

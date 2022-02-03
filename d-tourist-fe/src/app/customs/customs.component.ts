@@ -28,6 +28,7 @@ export class CustomsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.spinner.hide();
     this.customsService.unsubscribeFromContractEvent("TravelerDataProcessed", this.handleProcessedDataResult.bind(this));
   }
 
