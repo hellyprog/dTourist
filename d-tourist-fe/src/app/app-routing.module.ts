@@ -18,6 +18,10 @@ const routes: Routes = [
     loadChildren: () =>
       import('./customs/customs.module').then((m) => m.CustomsModule),
   },
+  { 
+    path: 'insurance', 
+    loadChildren: () => 
+      import('./insurance/insurance.module').then(m => m.InsuranceModule) },
   {
     path: '**',
     redirectTo: 'home',
