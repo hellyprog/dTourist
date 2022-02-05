@@ -1,0 +1,9 @@
+@import "colors";
+@import "variables";
+
+:host {
+  display: flex;
+  width: 100%;
+  height: calc(100vh - $header-height);
+  padding-top: $header-height;
+}

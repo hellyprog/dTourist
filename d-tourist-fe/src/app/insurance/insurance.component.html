@@ -1,1 +1,10 @@
-<p>insurance works!</p>
+<div class="insurance-status">
+    <div *ngIf="insurance; else noInsurance">
+        <div *ngIf="isInsuranceExpired(): else noInsurance">
+
+        </div>
+    </div>
+    <ng-template #noInsurance>
+        You don't have any valid insurance right now. <a href="#">Buy now.</a>
+    </ng-template>
+</div>
