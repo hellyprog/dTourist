@@ -1,10 +1,11 @@
 <div class="insurance-status">
     <div *ngIf="insurance; else noInsurance">
-        <div *ngIf="isInsuranceExpired(): else noInsurance">
-
+        <div *ngIf="isInsuranceExpired(); else noInsurance">
+            <div>Your have active {{insurance.type == 0 ? 'Classic' : 'Premium' }} insurance</div>
+            <div>Valid till {{insurance.expiryDate | date:'mediumDate'}}</div>
         </div>
     </div>
     <ng-template #noInsurance>
-        You don't have any valid insurance right now. <a href="#">Buy now.</a>
+        Currently you don't have any valid insurance. <a href="#">Buy now.</a>
     </ng-template>
 </div>

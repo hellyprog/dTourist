@@ -9,7 +9,9 @@ import { Insurance } from '@core/models';
 export class InsuranceComponent implements OnInit {
   insurance!: Insurance;
 
-  constructor() { }
+  constructor() { 
+    this.insurance = new Insurance(0, 1644254495);
+  }
 
   ngOnInit(): void {
   }

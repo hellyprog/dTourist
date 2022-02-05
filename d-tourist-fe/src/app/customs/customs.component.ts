@@ -37,9 +37,9 @@ export class CustomsComponent implements OnInit, OnDestroy {
       navigator.geolocation.getCurrentPosition((position) => {
         this.geolocationService.getCityInfoByCoordinates(position.coords.latitude, position.coords.longitude)
           .subscribe(response => {
-            if (response.data && response.data.length > 0) {
-              const position = response.data[0];
-              this.fromCity = new City(position.region, position.country);
+            if (response.address) {
+              const address = response.address;
+              this.fromCity = new City(address.city, address.country);
             }
           });
       });

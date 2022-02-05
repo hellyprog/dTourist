@@ -15,12 +15,12 @@ export class AppConfigService {
     this.appConfig = data;
   }
 
-  get positionStackAPI() {
-    return this.appConfig.positionStackAPI;
+  get locationIqAPI() {
+    return this.appConfig.locationIqAPI;
   }
 
-  get positionStackKey() {
-    return this.appConfig.positionStackKey;
+  get locationIqKey() {
+    return this.appConfig.locationIqKey;
   }
 
   get customsContractAddress() {

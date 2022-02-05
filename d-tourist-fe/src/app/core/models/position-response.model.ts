@@ -1,15 +1,10 @@
 export class PositionResponse {
-    data!: Position[];
-    error!: ErrorResponse
+    lat!: number;
+    lon!: number;
+    address!: Address;
 }
 
-export class Position {
-    latitude!: number;
-    longitude!: number;
-    region!: string;
+export class Address {
+    city!: string;
     country!: string;
-}
-
-export class ErrorResponse {
-    message!: string;
 }
