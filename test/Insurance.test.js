@@ -1,6 +1,5 @@
 const InsuranseStore = artifacts.require("InsuranceStore");
 const truffleAssert = require('truffle-assertions');
-//const web3 = require("web3");
 
 contract("InsuranceStore", (accounts) => {
     let insuranceStore;
@@ -10,6 +9,20 @@ contract("InsuranceStore", (accounts) => {
     });
 
     describe("Insurance Buying", async() => {
+        it("can get Classic plan price after initializaiton", async() => {
+            const classicType = 0;
+
+            const price = await insuranceStore.getInsurancePrice(classicType);
+            assert.equal(BigInt(price), BigInt(10000000000000000));
+        });
+
+        it("can get Premium plan price after initializaiton", async() => {
+            const premiumType = 1;
+
+            const price = await insuranceStore.getInsurancePrice(premiumType);
+            assert.equal(BigInt(price), BigInt(15000000000000000));
+        });
+
         it("can buy Classis insurance with 20000000000000000 txn value", async() => {
             const classicType = 0;
             

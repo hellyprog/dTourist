@@ -42,6 +42,12 @@ contract InsuranceStore is Ownable {
         _owner.transfer(address(this).balance);
     }
 
+    function setInsurancePrice(uint _insuranceType, uint newPrice) external onlyOwner {
+        require(newPrice > 0);
+        
+        insuranceTypeToPrice[InsuranceType(_insuranceType)] = newPrice;
+    }
+
     function getInsurancePrice(uint _insuranceType) external view returns(uint) {
         return insuranceTypeToPrice[InsuranceType(_insuranceType)];
     }
