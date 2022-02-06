@@ -6,23 +6,26 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 contract InsuranceStore is Ownable {
     enum InsuranceType { CLASSIC, PREMIUM }
 
-    uint basicDaylyInsurancePrice = 0.01 ether;
-    uint basicDaylyInsurancePremiumPrice = 0.015 ether;
-
     struct Insurance {
         uint expiryDate;
         InsuranceType insuranceType;
     }
 
     mapping(address => Insurance) personToInsurance;
+    mapping(InsuranceType => uint) insuranceTypeToPrice;
+
+    constructor() {
+        insuranceTypeToPrice[InsuranceType.CLASSIC] = 0.01 ether;
+        insuranceTypeToPrice[InsuranceType.PREMIUM] = 0.015 ether;
+    }
 
     function buyInsurance(uint _days, InsuranceType _type) external payable {
         require(_days > 0);
 
         if (_type == InsuranceType.CLASSIC) {
-            require(_days * basicDaylyInsurancePrice == msg.value);
+            require(_days * insuranceTypeToPrice[InsuranceType.CLASSIC] == msg.value);
         } else if (_type == InsuranceType.PREMIUM) {
-            require(_days * basicDaylyInsurancePremiumPrice == msg.value);
+            require(_days * insuranceTypeToPrice[InsuranceType.PREMIUM] == msg.value);
         }
         
         uint expiry = block.timestamp + (_days * 1 days);
@@ -37,6 +40,10 @@ contract InsuranceStore is Ownable {
     function withdraw() external onlyOwner {
         address payable _owner = payable(owner());
         _owner.transfer(address(this).balance);
+    }
+
+    function getInsurancePrice(uint _insuranceType) external view returns(uint) {
+        return insuranceTypeToPrice[InsuranceType(_insuranceType)];
     }
 
     function getInsuranceInfo(address _person) external view returns(Insurance memory) {
