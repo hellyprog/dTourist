@@ -4,6 +4,8 @@ pragma solidity >=0.4.22 <0.9.0;
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract InsuranceStore is Ownable {
+    event InsurancePriceChanged(InsuranceType insuranceType, uint newPrice);
+
     enum InsuranceType { CLASSIC, PREMIUM }
 
     struct Insurance {
@@ -46,6 +48,8 @@ contract InsuranceStore is Ownable {
         require(newPrice > 0);
         
         insuranceTypeToPrice[InsuranceType(_insuranceType)] = newPrice;
+
+        emit InsurancePriceChanged(InsuranceType(_insuranceType), newPrice);
     }
 
     function getInsurancePrice(uint _insuranceType) external view returns(uint) {
