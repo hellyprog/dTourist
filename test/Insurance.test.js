@@ -102,6 +102,35 @@ contract("InsuranceStore", (accounts) => {
                 insuranceStore.withdraw({from: accounts[3]})
             );
         });
+
+        it("can change Classic insurance price and InsurancePriceChanged event will be emitted", async() => {
+            const classicType = 0;
+
+            let tx = await insuranceStore.setInsurancePrice(classicType, 12000000000000000n);
+
+            truffleAssert.eventEmitted(tx, "InsurancePriceChanged", (ev) => {
+                return ev.insuranceType == 0 && ev.newPrice == 12000000000000000n;
+            });
+        });
+
+        it("can change Premium insurance price and InsurancePriceChanged event will be emitted", async() => {
+            const premiumType = 1;
+
+            let tx = await insuranceStore.setInsurancePrice(premiumType, 17000000000000000n);
+
+            truffleAssert.eventEmitted(tx, "InsurancePriceChanged", (ev) => {
+                return ev.insuranceType == 1 && ev.newPrice == 17000000000000000n;
+            });
+        });
+
+        it("can change Classic insurance price and price will be updated in mapping", async() => {
+            const classicType = 0;
+
+            let tx = await insuranceStore.setInsurancePrice(classicType, 14000000000000000n);
+            let newPrice = await insuranceStore.getInsurancePrice(classicType);
+
+            assert.equal(BigInt(newPrice), 14000000000000000n)
+        });
     });
 });
 
