@@ -22,6 +22,12 @@ export class WalletConnectorService {
     return signer.getAddress();
   }
 
+  async getWalletAddress(): Promise<string> {
+    const signer = this.provider.getSigner();
+
+    return signer.getAddress();
+  }
+
   async isWalletConnected(): Promise<boolean> {
     const accounts = await this.provider.listAccounts();
     return accounts.length > 0;

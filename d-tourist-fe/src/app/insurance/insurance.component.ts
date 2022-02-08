@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Insurance } from '@core/models';
+import { InsuranceService } from '@core/services';
 
 @Component({
   selector: 'app-insurance',
@@ -9,11 +10,14 @@ import { Insurance } from '@core/models';
 export class InsuranceComponent implements OnInit {
   insurance!: Insurance;
 
-  constructor() { 
-    this.insurance = new Insurance(0, 1644254495);
+  constructor(
+    private insuranceService: InsuranceService
+  ) { 
   }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    const result = await this.insuranceService.getInsuranceInfo();
+    console.log(result);
   }
 
   isInsuranceExpired(): Boolean {

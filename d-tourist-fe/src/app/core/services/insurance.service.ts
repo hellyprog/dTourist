@@ -35,6 +35,27 @@ export class InsuranceService {
     }
   }
 
+  async getInsurancePrice(insuranceType: number) {
+    const correctNetworkConnected = await this.walletConnectorService.ensureCorrectNetworkConnected();
+
+    if (correctNetworkConnected) {
+      const signer = this.provider.getSigner();
+      const contract = new ethers.Contract(this.insuranceStoreContract.address, this.insuranceStoreContract.abi, signer);
+      return contract['getInsurancePrice'](insuranceType);
+    }
+  }
+
+  async getInsuranceInfo(address?: string) {
+    address ??= await this.walletConnectorService.getWalletAddress();
+    const correctNetworkConnected = await this.walletConnectorService.ensureCorrectNetworkConnected();
+
+    if (correctNetworkConnected) {
+      const signer = this.provider.getSigner();
+      const contract = new ethers.Contract(this.insuranceStoreContract.address, this.insuranceStoreContract.abi, signer);
+      return contract['getInsuranceInfo'](address);
+    }
+  }
+
   subscribeToContractEvent(eventName: string, callback: any) {
     const signer = this.wsProvider.getSigner();
     const contract = new ethers.Contract(this.insuranceStoreContract.address, this.insuranceStoreContract.abi, signer);

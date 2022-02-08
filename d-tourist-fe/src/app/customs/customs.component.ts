@@ -19,7 +19,8 @@ export class CustomsComponent implements OnInit, OnDestroy {
   constructor(
     private customsService: CustomsService,
     private geolocationService: GeolocationService,
-    private spinner: NgxSpinnerService) {
+    private spinner: NgxSpinnerService
+  ) {
     this.getDepartureLocation();
   }
 
