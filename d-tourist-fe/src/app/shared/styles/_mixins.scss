@@ -1,0 +1,19 @@
+@import "colors";
+
+@mixin button-basic($background-color, $width, $font-size) {
+    background-color: $background-color;
+    font-size: $font-size;
+    color: $white;
+    padding: 8px;
+    text-transform: uppercase;
+    font-weight: bold;
+    width: $width;
+    transition: 0.5s;
+    cursor: pointer;
+    box-sizing: content-box;
+}
+
+@mixin button-large($background-color, $width, $font-size) {
+    @include button-basic($background-color, $width, $font-size);
+    padding: 20px;
+}

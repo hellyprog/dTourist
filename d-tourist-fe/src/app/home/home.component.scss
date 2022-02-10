@@ -1,5 +1,6 @@
 @import "colors";
 @import "variables";
+@import "mixins";
 
 :host {
   height: 100vh;
@@ -33,28 +34,16 @@
     left: 0;
 
     .block-button {
-      padding: 20px;
-      text-transform: uppercase;
-      font-weight: bold;
-      width: 80%;
-      transition: 1s;
-      cursor: pointer;
-
       &:hover {
         width: 100%;
       }
 
       &--dark {
-        background-color: $crimson-sky;
+        @include button-large($crimson-sky, 80%, 1.5rem);
       }
 
       &--light {
-        background-color: $light-blue;
-      }
-
-      &__link {
-        color: $white;
-        text-decoration: none;
+        @include button-large($light-blue, 80%, 1.5rem);
       }
     }
   }
@@ -68,10 +57,6 @@
   
       .button-container {
           width: 50%;
-
-          .block-button {
-            padding: 15px;
-          }
       }
     }
   }
@@ -84,10 +69,6 @@
 
     .button-container {
         width: 30%;
-
-        .block-button {
-          padding: 15px;
-        }
     }
   }
 }
@@ -96,13 +77,6 @@
   :host {
     .title-text {
       font-size: 6rem;
-    }
-
-    .button-container {
-        .block-button {
-          padding: 20px;
-          font-size: 1.5rem;
-        }
     }
   }
 }

@@ -1,5 +1,6 @@
 @import "colors";
 @import "variables";
+@import "mixins";
 
 :host {
   display: flex;
@@ -25,20 +26,20 @@
 
       .city-text {
         font-size: 3rem;
+        padding: 10px 0;
       }
 
       .city-scan {
-        background-color: $crimson-sky;
-        color: $white;
-        text-transform: uppercase;
-        cursor: pointer;
-        font-size: 2rem;
-        padding: 8px;
-        width: 70%;
+        @include button-basic($crimson-sky, 60%, 2rem);
+
+        &:hover {
+          width: 70%;        
+        }
       }
 
       .travel-info-title {
         font-size: 3rem;
+        padding-bottom: 10px;
       }
 
       .travel-info-item {
@@ -56,13 +57,11 @@
       }
 
       .security-check {
-        background-color: $crimson-sky;
-        color: $white;
-        text-transform: uppercase;
-        cursor: pointer;
-        font-size: 2rem;
-        padding: 8px;
-        width: 70%;
+        @include button-basic($crimson-sky, 60%, 2rem);
+
+        &:hover {
+          width: 70%;        
+        }
       }
     }
   }
