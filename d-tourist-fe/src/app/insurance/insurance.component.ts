@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Insurance } from '@core/models';
+import { InsuranceType } from '@core/models/insurance-type.model';
 import { InsuranceService } from '@core/services';
 
 @Component({
@@ -9,10 +10,15 @@ import { InsuranceService } from '@core/services';
 })
 export class InsuranceComponent implements OnInit {
   insurance!: Insurance;
+  insuranceTypes!: InsuranceType[];
 
   constructor(
     private insuranceService: InsuranceService
-  ) { 
+  ) {
+    this.insuranceTypes = [
+      new InsuranceType("Classic", 0.01, "Classic insurance type"),
+      new InsuranceType("Premium", 0.015, "Premium insurance type")
+    ]
   }
 
   async ngOnInit() {

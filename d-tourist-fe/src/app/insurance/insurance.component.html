@@ -1,15 +1,21 @@
 <div class="insurance-status">
-    <div *ngIf="insurance; else noInsurance">
+    <div *ngIf="insurance; else noInsurance" class="insurance-status__text">
         <div *ngIf="isInsuranceExpired(); else noInsurance">
             <div>Your have active {{insurance.type == 0 ? 'Classic' : 'Premium' }} insurance</div>
             <div>Valid till {{insurance.expiryDate | date:'mediumDate'}}</div>
         </div>
     </div>
     <ng-template #noInsurance>
-        Currently you don't have any valid insurance. <a href="#">Buy now.</a>
+        <div class="insurance-status__text">
+            <div>Currently you don't have any valid insurance.</div>
+            <div>You need one to cross the border.</div>
+        </div>
     </ng-template>
 </div>
 <div class="insurance-options">
-    <div>Classic</div>
-    <div>Premium</div>
+    <div *ngFor="let insuranceType of insuranceTypes">
+        <div>{{insuranceType.name}}</div>
+        <div>{{insuranceType.dailyPrice}} ETH</div>
+        <div>{{insuranceType.description}}</div>
+    </div>
 </div>

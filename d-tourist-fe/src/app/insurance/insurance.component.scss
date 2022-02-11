@@ -14,6 +14,14 @@
     padding-top: $header-height;
     background-color: $light-blue;
     color: $white;
+
+    &__text {
+      font-size: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
   }
 
   .insurance-options {
