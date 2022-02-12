@@ -13,9 +13,18 @@
     </ng-template>
 </div>
 <div class="insurance-options">
-    <div *ngFor="let insuranceType of insuranceTypes" class="insurance-type" (click)="openBuyModal(insuranceType)">
-        <div class="insurance-type__name">{{insuranceType.name}}</div>
-        <div class="insurance-type__price">{{insuranceType.dailyPrice}} ETH</div>
-        <div class="insurance-type__description">{{insuranceType.description}}</div>
+    <div *ngFor="let insuranceType of insuranceTypes" class="insurance-type-block" (click)="enablePurchaseMode(insuranceType.id)">
+        <div class="insurance-type">
+            <div class="insurance-type__name">{{insuranceType.name}}</div>
+            <div class="insurance-type__price">{{insuranceType.dailyPrice}} ETH</div>
+            <div class="insurance-type__description">{{insuranceType.description}}</div>
+        </div>
+        <div class="insurance-type" *ngIf="isPurchaseMode">
+            <div class="purchase-days">
+                <input type="text"> days
+            </div>
+            <div class="purchase-button" (click)="buyInsurance(insuranceType)">Purchase Insurance</div>
+            <div class="purchase-button" (click)="disablePurchaseMode()">Cancel</div>
+        </div>
     </div>
 </div>

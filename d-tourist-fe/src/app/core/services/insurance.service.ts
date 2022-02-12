@@ -22,7 +22,6 @@ export class InsuranceService {
       this.insuranceStoreContract.abi = InsuranceStore.abi;
   }
 
-  //Insurance Type enum
   async buyInsurance(days: number, insuranceType: number) {
     const correctNetworkConnected = await this.walletConnectorService.ensureCorrectNetworkConnected();
 

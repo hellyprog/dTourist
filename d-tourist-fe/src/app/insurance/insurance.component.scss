@@ -1,5 +1,6 @@
 @import "colors";
 @import "variables";
+@import "mixins";
 
 :host {
   display: flex;
@@ -32,9 +33,8 @@
     width: 50%;
     padding-top: $header-height;
 
-    .insurance-type {
+    .insurance-type-block {
       display: flex;
-      flex-direction: column;
       width: 80%;
       border: 2px solid $light-blue;
       margin-bottom: 20px;
@@ -46,13 +46,40 @@
         box-shadow: 7px 7px $light-blue;
       }
 
-      &__name,
-      &__price {
-        font-size: 3rem;
-      }
+      .insurance-type {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
 
-      &__description {
-        font-size: 1.5rem;
+        .purchase-days {
+          padding-bottom: 10px;
+
+          input {
+            border: none;
+            border-bottom: 2px solid $light-blue;
+            outline: none;
+            font-size: 1.5rem;
+            width: 25%;
+          }
+        }
+
+        .purchase-button {
+          @include button-basic($light-blue, 70%, 1rem);
+          margin-bottom: 5px;
+          
+          &:hover {
+            width: 80%;        
+          }
+        }
+
+        &__name,
+        &__price {
+          font-size: 3rem;
+        }
+
+        &__description {
+          font-size: 1.5rem;
+        }
       }
     }
   }
