@@ -7,15 +7,15 @@
     </div>
     <ng-template #noInsurance>
         <div class="insurance-status__text">
-            <div>Currently you don't have any valid insurance.</div>
+            <div>Currently you don't have valid insurance.</div>
             <div>You need one to cross the border.</div>
         </div>
     </ng-template>
 </div>
 <div class="insurance-options">
-    <div *ngFor="let insuranceType of insuranceTypes">
-        <div>{{insuranceType.name}}</div>
-        <div>{{insuranceType.dailyPrice}} ETH</div>
-        <div>{{insuranceType.description}}</div>
+    <div *ngFor="let insuranceType of insuranceTypes" class="insurance-type" (click)="openBuyModal(insuranceType)">
+        <div class="insurance-type__name">{{insuranceType.name}}</div>
+        <div class="insurance-type__price">{{insuranceType.dailyPrice}} ETH</div>
+        <div class="insurance-type__description">{{insuranceType.description}}</div>
     </div>
 </div>

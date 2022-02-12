@@ -31,5 +31,29 @@
     justify-content: center;
     width: 50%;
     padding-top: $header-height;
+
+    .insurance-type {
+      display: flex;
+      flex-direction: column;
+      width: 80%;
+      border: 2px solid $light-blue;
+      margin-bottom: 20px;
+      padding: 20px;
+      box-shadow: 5px 5px $light-blue;
+
+      &:hover {
+        cursor: pointer;
+        box-shadow: 7px 7px $light-blue;
+      }
+
+      &__name,
+      &__price {
+        font-size: 3rem;
+      }
+
+      &__description {
+        font-size: 1.5rem;
+      }
+    }
   }
 }

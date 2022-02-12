@@ -26,6 +26,10 @@ export class InsuranceComponent implements OnInit {
     console.log(result);
   }
 
+  openBuyModal(insuranceType: InsuranceType) {
+    alert(insuranceType.name);
+  }
+
   isInsuranceExpired(): Boolean {
     if (this.insurance) {
       return this.insurance.expiryDate > new Date();
