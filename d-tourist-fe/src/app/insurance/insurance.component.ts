@@ -12,6 +12,8 @@ export class InsuranceComponent implements OnInit {
   insuranceTypes!: InsuranceType[];
   isPurchaseMode = false;
   editedInsuranceTypeId?: number;
+  totalPrice = 0;
+  daysToPurchase = 0;
 
   constructor(
     private insuranceService: InsuranceService
@@ -32,15 +34,24 @@ export class InsuranceComponent implements OnInit {
     this.editedInsuranceTypeId = insuranceTypeId;
   }
 
+  daysChanged(value: any) {
+    this.daysToPurchase = value;
+    const insuranceType = this.insuranceTypes.find(x => x.id === this.editedInsuranceTypeId);
+    this.totalPrice = (insuranceType?.dailyPrice ?? 0) * value;
+  }
+
   disablePurchaseMode(event: MouseEvent) {
     event.stopPropagation();
     this.isPurchaseMode = false;
     this.editedInsuranceTypeId = undefined;
+    this.daysToPurchase = 0;
+    this.totalPrice = 0;
   }
 
-  buyInsurance(insuranceType: InsuranceType, event: MouseEvent) {
+  buyInsurance(event: MouseEvent) {
     event.stopPropagation();
-    alert(insuranceType.name);
+    const insuranceType = this.insuranceTypes.find(x => x.id === this.editedInsuranceTypeId);
+    alert(insuranceType?.name);
     this.disablePurchaseMode(event);
   }
 

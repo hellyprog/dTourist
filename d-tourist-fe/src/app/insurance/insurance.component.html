@@ -21,11 +21,10 @@
         </div>
         <div class="insurance-type" *ngIf="isPurchaseMode && editedInsuranceTypeId === insuranceType.id">
             <div class="purchase-days">
-                <input type="text"> days
+                <input type="text" [ngModel]="daysToPurchase" (ngModelChange)="daysChanged($event)"> DAYS / TOTAL OF {{totalPrice}} ETH
             </div>
-            <div class="purchase-button" (click)="buyInsurance(insuranceType, $event)">Purchase Insurance</div>
+            <div class="purchase-button" (click)="buyInsurance($event)">Purchase Insurance</div>
             <div class="purchase-button" (click)="disablePurchaseMode($event)">Cancel</div>
         </div>
     </div>
 </div>
-<div>{{isPurchaseMode}}</div>

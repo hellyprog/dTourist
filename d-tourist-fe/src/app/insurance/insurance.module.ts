@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { InsuranceRoutingModule } from './insurance-routing.module';
 import { InsuranceComponent } from './insurance.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -11,6 +12,7 @@ import { InsuranceComponent } from './insurance.component';
   ],
   imports: [
     CommonModule,
+    FormsModule,
     InsuranceRoutingModule
   ]
 })
