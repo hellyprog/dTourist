@@ -34,7 +34,9 @@ export class InsuranceComponent implements OnInit {
     this.editedInsuranceTypeId = insuranceTypeId;
   }
 
-  daysChanged(value: any) {
+  formatDaysValue(event: any) {
+    const value = Math.abs(Math.round(event.target.value));
+    event.target.value = value;
     this.daysToPurchase = value;
     const insuranceType = this.insuranceTypes.find(x => x.id === this.editedInsuranceTypeId);
     this.totalPrice = (insuranceType?.dailyPrice ?? 0) * value;
