@@ -19,12 +19,13 @@
             <div class="insurance-type__price">{{insuranceType.dailyPrice}} ETH</div>
             <div class="insurance-type__description">{{insuranceType.description}}</div>
         </div>
-        <div class="insurance-type" *ngIf="isPurchaseMode">
+        <div class="insurance-type" *ngIf="isPurchaseMode && editedInsuranceTypeId === insuranceType.id">
             <div class="purchase-days">
                 <input type="text"> days
             </div>
-            <div class="purchase-button" (click)="buyInsurance(insuranceType)">Purchase Insurance</div>
-            <div class="purchase-button" (click)="disablePurchaseMode()">Cancel</div>
+            <div class="purchase-button" (click)="buyInsurance(insuranceType, $event)">Purchase Insurance</div>
+            <div class="purchase-button" (click)="disablePurchaseMode($event)">Cancel</div>
         </div>
     </div>
 </div>
+<div>{{isPurchaseMode}}</div>

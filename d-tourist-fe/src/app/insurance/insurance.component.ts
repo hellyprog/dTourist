@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Insurance, InsuranceType } from '@core/models';
 import { InsuranceService } from '@core/services';
 
@@ -32,13 +32,16 @@ export class InsuranceComponent implements OnInit {
     this.editedInsuranceTypeId = insuranceTypeId;
   }
 
-  disablePurchaseMode() {
+  disablePurchaseMode(event: MouseEvent) {
+    event.stopPropagation();
     this.isPurchaseMode = false;
-    //this.editedInsuranceTypeId = undefined;
+    this.editedInsuranceTypeId = undefined;
   }
 
-  buyInsurance(insuranceType: InsuranceType) {
+  buyInsurance(insuranceType: InsuranceType, event: MouseEvent) {
+    event.stopPropagation();
     alert(insuranceType.name);
+    this.disablePurchaseMode(event);
   }
 
   isInsuranceExpired(): Boolean {
