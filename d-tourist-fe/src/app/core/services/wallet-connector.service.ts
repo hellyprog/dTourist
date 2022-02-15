@@ -44,7 +44,7 @@ export class WalletConnectorService {
     if (Number(chainId) !== this.RINKEBY_NETWORK_ID) {
       const snackBarText = 'Selected network is incorrect. Please switch to Rinkeby network.';
       this.snackBar.open(snackBarText, 'Close', {
-        duration: 2000,
+        duration: 4000,
         panelClass: ['snackbar-primary']
       });
 

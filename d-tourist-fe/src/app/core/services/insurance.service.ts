@@ -5,6 +5,7 @@ import { ethers } from 'ethers';
 import InsuranceStore from '@assets/contracts/InsuranceStore.json';
 
 declare let window: any;
+
 @Injectable({
   providedIn: 'root'
 })
@@ -22,14 +23,13 @@ export class InsuranceService {
       this.insuranceStoreContract.abi = InsuranceStore.abi;
   }
 
-  async buyInsurance(days: number, insuranceType: number) {
+  async buyInsurance(days: number, insuranceType: number, totalPrice: number) {
     const correctNetworkConnected = await this.walletConnectorService.ensureCorrectNetworkConnected();
 
     if (correctNetworkConnected) {
       const signer = this.provider.getSigner();
       const contract = new ethers.Contract(this.insuranceStoreContract.address, this.insuranceStoreContract.abi, signer);
-      const ethersPrice = this.getEthersPrice(days, insuranceType);
-      const options = { value: ethers.utils.parseEther(ethersPrice.toString()) };
+      const options = { value: ethers.utils.parseEther(totalPrice.toString()) };
       return contract['buyInsurance'](days, insuranceType, options);
     }
   }
@@ -65,16 +65,5 @@ export class InsuranceService {
     const signer = this.wsProvider.getSigner();
     const contract = new ethers.Contract(this.insuranceStoreContract.address, this.insuranceStoreContract.abi, signer);
     contract.off(eventName, callback);
-  }
-
-  private getEthersPrice(days: number, insuranceType: number) {
-    switch (insuranceType) {
-      case 0:
-        return days * 0.01;
-      case 1:
-        return days * 0.015;
-      default:
-        return 0;
-    }
   }
 }
