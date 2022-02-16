@@ -1,9 +1,9 @@
 <div class="insurance-status">
     <div *ngIf="insurance; else noInsurance" class="insurance-status__text">
-        <div *ngIf="isInsuranceExpired(); else noInsurance">
+        <ng-container *ngIf="isInsuranceExpired(); else noInsurance">
             <div>Your have active {{insurance.type == 0 ? 'Classic' : 'Premium' }} insurance</div>
             <div>Valid till {{insurance.expiryDate | date:'mediumDate'}}</div>
-        </div>
+        </ng-container>
     </div>
     <ng-template #noInsurance>
         <div class="insurance-status__text">
