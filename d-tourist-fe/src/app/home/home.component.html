@@ -1,6 +1,7 @@
 <div class="title-text">Decentralized customs</div>
 <img class="image" src="../../assets/airport.webp" alt="airport">
 <div class="button-container">
-    <div class="block-button block-button--dark" [routerLink]="['/customs']"> Go to customs</div>
+    <div class="block-button block-button--dark" [routerLink]="['/customs']">Go to customs</div>
     <div class="block-button block-button--light" [routerLink]="['/insurance']">Insurance Store</div>
+    <div *ngIf="isInsuranceContractOwner" class="block-button block-button--dark" [routerLink]="['/customs']">Manage Insurance Contract</div>
 </div>

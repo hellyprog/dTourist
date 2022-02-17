@@ -14,7 +14,7 @@ const routes: Routes = [
   },
   {
     path: 'customs',
-    canLoad: [WalletConnectedGuard],
+    //canLoad: [WalletConnectedGuard],
     loadChildren: () =>
       import('./customs/customs.module').then((m) => m.CustomsModule),
   },

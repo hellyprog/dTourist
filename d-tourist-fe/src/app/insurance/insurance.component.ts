@@ -23,6 +23,7 @@ export class InsuranceComponent implements OnInit {
   async ngOnInit() {
     const result = await this.insuranceService.getInsuranceInfo();
     this.insurance = new Insurance(result.insuranceType, result.expiryDate);
+
     const classicPrice = await this.insuranceService.getInsurancePrice(0);
     const premiumPrice = await this.insuranceService.getInsurancePrice(1);
     const classicPriceInEth = Number.parseFloat(ethers.utils.formatEther(classicPrice));
@@ -30,7 +31,7 @@ export class InsuranceComponent implements OnInit {
     this.insuranceTypes = [
       new InsuranceType(0, "Classic", classicPriceInEth, "Classic insurance type"),
       new InsuranceType(1, "Premium", premiumPriceInEth, "Premium insurance type")
-    ]
+    ];
   }
 
   enablePurchaseMode(insuranceTypeId: number) {

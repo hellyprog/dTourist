@@ -34,6 +34,16 @@ export class InsuranceService {
     }
   }
 
+  async getContractOwnerAddress() {
+    const correctNetworkConnected = await this.walletConnectorService.ensureCorrectNetworkConnected();
+
+    if (correctNetworkConnected) {
+      const signer = this.provider.getSigner();
+      const contract = new ethers.Contract(this.insuranceStoreContract.address, this.insuranceStoreContract.abi, signer);
+      return contract['owner']();
+    }
+  }
+
   async getInsurancePrice(insuranceType: number) {
     const correctNetworkConnected = await this.walletConnectorService.ensureCorrectNetworkConnected();
 
