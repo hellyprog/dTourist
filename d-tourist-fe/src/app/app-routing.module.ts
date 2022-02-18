@@ -22,6 +22,11 @@ const routes: Routes = [
     path: 'insurance', 
     loadChildren: () => 
       import('./insurance/insurance.module').then(m => m.InsuranceModule) },
+  { 
+    path: 'insurance-management', 
+    loadChildren: () => 
+      import('./insurance-management/insurance-management.module').then(m => m.InsuranceManagementModule) 
+  },
   {
     path: '**',
     redirectTo: 'home',
