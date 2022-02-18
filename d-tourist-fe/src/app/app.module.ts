@@ -7,12 +7,14 @@ import { SharedModule } from '@shared/shared.module';
 import { CoreModule } from '@core/core.module';
 import { AppConfigService } from '@core/services';
 import { HttpClientModule } from '@angular/common/http';
+import { DirectivesModule } from '@directives/directives.module';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
+    DirectivesModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,

@@ -3,5 +3,5 @@
 <div class="button-container">
     <div class="block-button block-button--dark" [routerLink]="['/customs']">Go to customs</div>
     <div class="block-button block-button--light" [routerLink]="['/insurance']">Insurance Store</div>
-    <div *ngIf="isInsuranceContractOwner" class="block-button block-button--dark" [routerLink]="['/insurance-management']">Manage Insurance Contract</div>
+    <div insurance-owner class="block-button block-button--dark" [routerLink]="['/insurance-management']">Manage Insurance Contract</div>
 </div>
