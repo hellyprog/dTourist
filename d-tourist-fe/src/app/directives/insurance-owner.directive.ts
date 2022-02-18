@@ -1,12 +1,21 @@
-import { Directive, ElementRef } from '@angular/core';
+import { Directive, ElementRef, OnInit } from '@angular/core';
+import { InsuranceService } from '@core/services';
 
 @Directive({
   selector: '[insurance-owner]'
 })
-export class InsuranceOwnerDirective {
+export class InsuranceOwnerDirective implements OnInit {
 
-  constructor(el: ElementRef) {
-    el.nativeElement.style.display = 'none';
+  constructor(
+    private element: ElementRef,
+    private insuranceService: InsuranceService
+  ) { }
+
+  async ngOnInit() {
+    const isOwnerConnected = await this.insuranceService.isContractOwner();
+
+    if (!isOwnerConnected) {
+      this.element.nativeElement.style.display = 'none';  
+    }
   }
-
 }
