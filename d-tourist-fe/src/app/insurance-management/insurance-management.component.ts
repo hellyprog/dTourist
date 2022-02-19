@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./insurance-management.component.scss']
 })
 export class InsuranceManagementComponent implements OnInit {
+  contractBalance = 100;
 
   constructor() { }
 
