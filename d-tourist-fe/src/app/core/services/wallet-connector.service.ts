@@ -48,7 +48,7 @@ export class WalletConnectorService {
         panelClass: ['snackbar-primary']
       });
 
-      return false
+      return false;
     }
 
     return true;
