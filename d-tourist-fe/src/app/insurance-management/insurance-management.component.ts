@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AppConfigService, InsuranceService } from '@core/services';
+import { ethers } from 'ethers';
 
 @Component({
   selector: 'app-insurance-management',
@@ -6,11 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./insurance-management.component.scss']
 })
 export class InsuranceManagementComponent implements OnInit {
-  contractBalance = 100;
-  contractAddress = '0x26287D7ff0A24DB1B54b6Bb04c8558b197297e85';
-  constructor() { }
+  contractBalance!: number;
+  contractAddress: string;
 
-  ngOnInit(): void {
+  constructor(
+    private appConfigService: AppConfigService,
+    private insuranceService: InsuranceService
+  ) {
+    this.contractAddress = this.appConfigService.insuranceStoreContractAddress;
+  }
+
+  async ngOnInit() {
+    const balanceUnconverted = await this.insuranceService.getContractBalance();
+    this.contractBalance = Number.parseFloat(ethers.utils.formatEther(balanceUnconverted));
+    console.log(this.contractBalance);
   }
 
   copyContractAddress() {

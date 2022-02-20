@@ -34,6 +34,10 @@ export class InsuranceService {
     }
   }
 
+  async getContractBalance() {
+    return this.provider.getBalance(this.appConfigService.insuranceStoreContractAddress);
+  }
+
   async getContractOwnerAddress() {
     const correctNetworkConnected = await this.walletConnectorService.ensureCorrectNetworkConnected();
 
