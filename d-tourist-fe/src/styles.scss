@@ -36,13 +36,25 @@ body {
   box-sizing: border-box;
 }
 
-.snackbar-primary {
+.snackbar-dark {
   background: $crimson-sky;
   color: $white;
 
   button {
     background: none;
     color: $white;
+    font-weight: bold;
+    cursor: pointer;
+  }
+}
+
+.snackbar-light {
+  background: $light-blue;
+  color: $white;
+
+  button {
+    background: none;
+    color: $ultramarine;
     font-weight: bold;
     cursor: pointer;
   }

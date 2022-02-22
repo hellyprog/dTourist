@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { InsuranceRoutingModule } from './insurance-routing.module';
 import { InsuranceComponent } from './insurance.component';
 import { FormsModule } from '@angular/forms';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     FormsModule,
-    InsuranceRoutingModule
+    InsuranceRoutingModule,
+    MatSnackBarModule
   ]
 })
 export class InsuranceModule { }

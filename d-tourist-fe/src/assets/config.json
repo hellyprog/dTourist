@@ -1,7 +1,7 @@
 {
     "locationIqAPI": "https://eu1.locationiq.com/v1/reverse.php",
     "locationIqKey": "pk.b1fb191da94862b4fc0dab4042ee287e",
-    "customsContractAddress": "0x9Eb828C49402b2aE235FAeEb4c61E7c08A2E9eD1",
-    "insuranceStoreContractAddress": "0x26287D7ff0A24DB1B54b6Bb04c8558b197297e85",
+    "customsContractAddress": "0x4DC41aCBd31A63010dE2C4950C581351F624415b",
+    "insuranceStoreContractAddress": "0xa96e67da7a079AD5e752C23481d656e47DAE36B0",
     "wsProvider": "wss://rinkeby.infura.io/ws/v3/cbfccb482e9948de9fa068c1d2318700"
 }

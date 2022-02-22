@@ -5,6 +5,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract InsuranceStore is Ownable {
     event InsurancePriceChanged(InsuranceType insuranceType, uint newPrice);
+    event InsurancePurchased(bool success);
 
     enum InsuranceType { CLASSIC, PREMIUM }
 
@@ -37,6 +38,7 @@ contract InsuranceStore is Ownable {
         }
 
         personToInsurance[msg.sender] = Insurance(expiry, _type);
+        emit InsurancePurchased(true);
     }
 
     function withdraw() external onlyOwner {

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Insurance, InsuranceType } from '@core/models';
 import { InsuranceService } from '@core/services';
 import { ethers } from 'ethers';
@@ -17,7 +18,8 @@ export class InsuranceComponent implements OnInit {
   daysToPurchase = 0;
 
   constructor(
-    private insuranceService: InsuranceService
+    private insuranceService: InsuranceService,
+    private snackBar: MatSnackBar
   ) { }
 
   async ngOnInit() {
@@ -32,6 +34,23 @@ export class InsuranceComponent implements OnInit {
       new InsuranceType(0, "Classic", classicPriceInEth, "Classic insurance type"),
       new InsuranceType(1, "Premium", premiumPriceInEth, "Premium insurance type")
     ];
+
+    this.insuranceService.subscribeToContractEvent("InsurancePurchased", this.handleProcessedDataResult.bind(this));
+  }
+
+  ngOnDestroy(): void {
+    this.insuranceService.unsubscribeFromContractEvent("InsurancePurchased", this.handleProcessedDataResult.bind(this));
+  }
+
+  handleProcessedDataResult(success: boolean) {
+    const snackBarText = success
+      ? 'You successfully purchased insurance.'
+      : 'Insurance purchase failed';
+
+      this.snackBar.open(snackBarText, 'Close', {
+        duration: 4000,
+        panelClass: ['snackbar-light']
+      });
   }
 
   enablePurchaseMode(insuranceTypeId: number) {
