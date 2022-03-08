@@ -23,17 +23,8 @@ export class InsuranceComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
-    const result = await this.insuranceService.getInsuranceInfo();
-    this.insurance = new Insurance(result.insuranceType, result.expiryDate);
-
-    const classicPrice = await this.insuranceService.getInsurancePrice(0);
-    const premiumPrice = await this.insuranceService.getInsurancePrice(1);
-    const classicPriceInEth = Number.parseFloat(ethers.utils.formatEther(classicPrice));
-    const premiumPriceInEth = Number.parseFloat(ethers.utils.formatEther(premiumPrice));
-    this.insuranceTypes = [
-      new InsuranceType(0, "Classic", classicPriceInEth, "Classic insurance type"),
-      new InsuranceType(1, "Premium", premiumPriceInEth, "Premium insurance type")
-    ];
+    await this.fetchInsuranceData();
+    await this.fetchInsurancePrices();
 
     this.insuranceService.subscribeToContractEvent("InsurancePurchased", this.handleProcessedDataResult.bind(this));
   }
@@ -42,7 +33,23 @@ export class InsuranceComponent implements OnInit {
     this.insuranceService.unsubscribeFromContractEvent("InsurancePurchased", this.handleProcessedDataResult.bind(this));
   }
 
-  handleProcessedDataResult(success: boolean) {
+  async fetchInsuranceData() {
+    const result = await this.insuranceService.getInsuranceInfo();
+    this.insurance = new Insurance(result.insuranceType, result.expiryDate);
+  }
+
+  async fetchInsurancePrices() {
+    const classicPrice = await this.insuranceService.getInsurancePrice(0);
+    const premiumPrice = await this.insuranceService.getInsurancePrice(1);
+    const classicPriceInEth = Number.parseFloat(ethers.utils.formatEther(classicPrice));
+    const premiumPriceInEth = Number.parseFloat(ethers.utils.formatEther(premiumPrice));
+    this.insuranceTypes = [
+      new InsuranceType(0, "Classic", classicPriceInEth, "Classic insurance type"),
+      new InsuranceType(1, "Premium", premiumPriceInEth, "Premium insurance type")
+    ];
+  }
+
+  async handleProcessedDataResult(success: boolean) {
     const snackBarText = success
       ? 'You successfully purchased insurance.'
       : 'Insurance purchase failed';
@@ -51,6 +58,10 @@ export class InsuranceComponent implements OnInit {
         duration: 4000,
         panelClass: ['snackbar-light']
       });
+
+      if (success) {
+        await this.fetchInsuranceData();
+      }
   }
 
   enablePurchaseMode(insuranceTypeId: number) {

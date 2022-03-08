@@ -39,6 +39,7 @@ body {
 .snackbar-dark {
   background: $crimson-sky;
   color: $white;
+  border: 1px solid $white;
 
   button {
     background: none;
@@ -51,10 +52,11 @@ body {
 .snackbar-light {
   background: $light-blue;
   color: $white;
+  border: 1px solid $white;
 
   button {
     background: none;
-    color: $ultramarine;
+    color: $white;
     font-weight: bold;
     cursor: pointer;
   }
