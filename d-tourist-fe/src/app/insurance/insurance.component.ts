@@ -27,10 +27,12 @@ export class InsuranceComponent implements OnInit {
     await this.fetchInsurancePrices();
 
     this.insuranceService.subscribeToContractEvent("InsurancePurchased", this.handleProcessedDataResult.bind(this));
+    this.insuranceService.subscribeToContractEvent("InsurancePriceChanged", this.handleInsurancePriceChange.bind(this));
   }
 
   ngOnDestroy(): void {
     this.insuranceService.unsubscribeFromContractEvent("InsurancePurchased", this.handleProcessedDataResult.bind(this));
+    this.insuranceService.subscribeToContractEvent("InsurancePriceChanged", this.handleInsurancePriceChange.bind(this));
   }
 
   async fetchInsuranceData() {
@@ -47,6 +49,10 @@ export class InsuranceComponent implements OnInit {
       new InsuranceType(0, "Classic", classicPriceInEth, "Classic insurance type"),
       new InsuranceType(1, "Premium", premiumPriceInEth, "Premium insurance type")
     ];
+  }
+
+  async handleInsurancePriceChange(insuranceType: number, newPrice: number) {
+    this.insuranceTypes[insuranceType].dailyPrice = Number.parseFloat(ethers.utils.formatEther(newPrice));
   }
 
   async handleProcessedDataResult(success: boolean) {
