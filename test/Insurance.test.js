@@ -47,6 +47,14 @@ contract("InsuranceStore", (accounts) => {
             );
         });
 
+        it("cannot buy insurance with incorrect price", async() => {
+            const premiumType = 1;
+
+            await truffleAssert.reverts(
+                insuranceStore.buyInsurance(10, premiumType, { from: accounts[0], value: 30000000000000000 })
+            );
+        });
+
         it("can buy Classic insurance and it will have correct expiry date", async() => {
             const classicType = 0;
 
@@ -86,6 +94,16 @@ contract("InsuranceStore", (accounts) => {
             assert.equal(insuranceExpiry.getDate(), expectedExpiryDate.getDate(), "Month date should be the same");
         });
 
+        it("can buy insurance and InsurancePurchased event will be emitted", async() => {
+            const premiumType = 1;
+
+            const tx = await insuranceStore.buyInsurance(7, premiumType, { from: accounts[0], value: 105000000000000000 });
+
+            truffleAssert.eventEmitted(tx, "InsurancePurchased", (ev) => {
+                return ev.success;
+            });
+        });
+
         it("can withdraw ether from contact using owner account", async() => {
             const premiumType = 1;
             await insuranceStore.buyInsurance(7, premiumType, { from: accounts[0], value: 105000000000000000 });
@@ -106,7 +124,7 @@ contract("InsuranceStore", (accounts) => {
         it("can change Classic insurance price and InsurancePriceChanged event will be emitted", async() => {
             const classicType = 0;
 
-            let tx = await insuranceStore.setInsurancePrice(classicType, 12000000000000000n);
+            const tx = await insuranceStore.setInsurancePrice(classicType, 12000000000000000n);
 
             truffleAssert.eventEmitted(tx, "InsurancePriceChanged", (ev) => {
                 return ev.insuranceType == 0 && ev.newPrice == 12000000000000000n;
@@ -116,7 +134,7 @@ contract("InsuranceStore", (accounts) => {
         it("can change Premium insurance price and InsurancePriceChanged event will be emitted", async() => {
             const premiumType = 1;
 
-            let tx = await insuranceStore.setInsurancePrice(premiumType, 17000000000000000n);
+            const tx = await insuranceStore.setInsurancePrice(premiumType, 17000000000000000n);
 
             truffleAssert.eventEmitted(tx, "InsurancePriceChanged", (ev) => {
                 return ev.insuranceType == 1 && ev.newPrice == 17000000000000000n;
@@ -126,8 +144,8 @@ contract("InsuranceStore", (accounts) => {
         it("can change Classic insurance price and price will be updated in mapping", async() => {
             const classicType = 0;
 
-            let tx = await insuranceStore.setInsurancePrice(classicType, 14000000000000000n);
-            let newPrice = await insuranceStore.getInsurancePrice(classicType);
+            const tx = await insuranceStore.setInsurancePrice(classicType, 14000000000000000n);
+            const newPrice = await insuranceStore.getInsurancePrice(classicType);
 
             assert.equal(BigInt(newPrice), 14000000000000000n)
         });
@@ -135,10 +153,10 @@ contract("InsuranceStore", (accounts) => {
 });
 
 async function getTransactionGasCost(txn) {
-    let receipt = await web3.eth.getTransactionReceipt(txn["tx"]);
-    let gasUsed = receipt.gasUsed;
-    let transaction = await web3.eth.getTransaction(txn["tx"]);
-    let gasPrice = Number(transaction.gasPrice);
+    const receipt = await web3.eth.getTransactionReceipt(txn["tx"]);
+    const gasUsed = receipt.gasUsed;
+    const transaction = await web3.eth.getTransaction(txn["tx"]);
+    const gasPrice = Number(transaction.gasPrice);
 
     return BigInt(gasUsed * gasPrice);
 }
