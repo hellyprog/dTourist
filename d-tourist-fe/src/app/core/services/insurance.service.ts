@@ -38,6 +38,16 @@ export class InsuranceService {
     return this.provider.getBalance(this.appConfigService.insuranceStoreContractAddress);
   }
 
+  async withdrawBalance() {
+    const correctNetworkConnected = await this.walletConnectorService.ensureCorrectNetworkConnected();
+
+    if (correctNetworkConnected) {
+      const signer = this.provider.getSigner();
+      const contract = new ethers.Contract(this.insuranceStoreContract.address, this.insuranceStoreContract.abi, signer);
+      return contract['withdraw']();
+    }
+  }
+
   async getContractOwnerAddress() {
     const correctNetworkConnected = await this.walletConnectorService.ensureCorrectNetworkConnected();
 

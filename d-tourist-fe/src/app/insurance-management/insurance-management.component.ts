@@ -21,13 +21,17 @@ export class InsuranceManagementComponent implements OnInit {
   async ngOnInit() {
     const balanceUnconverted = await this.insuranceService.getContractBalance();
     this.contractBalance = Number.parseFloat(ethers.utils.formatEther(balanceUnconverted));
-    console.log(this.contractBalance);
+  }
+
+  async withdrawInsuranceBalance() {
+    await this.insuranceService.withdrawBalance();
   }
 
   copyContractAddress() {
     if (!navigator.clipboard) {
       return;
     }
+
     navigator.clipboard.writeText(this.contractAddress).then(function() {
       console.log('Async: Copying to clipboard was successful!');
     }, function(err) {

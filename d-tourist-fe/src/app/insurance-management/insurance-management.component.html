@@ -2,7 +2,7 @@
     <div class="contract-address" title="Click to copy" (click)="copyContractAddress()">Contract address: {{contractAddress}}</div>
     <div class="contract-balance">
         <div class="contract-balance__text">Contract balance: {{contractBalance}} ETH</div>
-        <div class="contract-balance__button">Withdraw</div>
+        <div class="contract-balance__button" (click)="withdrawInsuranceBalance()">Withdraw</div>
     </div>
 </div>
 <div class="insurance-statistics">
