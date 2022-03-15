@@ -27,10 +27,22 @@
             border: 2px solid $white;
             font-weight: bold;
             box-shadow: 5px 5px $light-blue;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
 
             &:hover {
                 cursor: pointer;
                 box-shadow: 7px 7px $white;
+            }
+
+            &__button {
+                @include button-basic($white, 30%, 1rem);
+                color: $light-blue;
+
+                &:hover {
+                    width: 35%;        
+                }
             }
         }
     }
