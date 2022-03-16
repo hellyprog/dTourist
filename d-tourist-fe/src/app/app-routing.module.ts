@@ -27,6 +27,11 @@ const routes: Routes = [
     loadChildren: () => 
       import('./insurance-management/insurance-management.module').then(m => m.InsuranceManagementModule) 
   },
+  { 
+    path: 'ticket-scanner',
+    loadChildren: () => 
+      import('./ticket-scanner/ticket-scanner.module').then(m => m.TicketScannerModule)
+  },
   {
     path: '**',
     redirectTo: 'home',

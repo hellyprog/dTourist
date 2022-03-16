@@ -50,6 +50,7 @@ export class CustomsComponent implements OnInit, OnDestroy {
   }
 
   scanTicket() {
+    window.open('http://localhost:4200/ticket-scanner', 'Ticker-Scanner', 'popup');
     this.toCity = new City('Barcelona', 'Spain');
     this.scanSuccessfull = true;
   }
