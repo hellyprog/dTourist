@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { City } from '@core/models';
 import { AppConfigService, CustomsService, GeolocationService } from '@core/services';
 import { NgxSpinnerService } from "ngx-spinner";
@@ -34,6 +34,14 @@ export class CustomsComponent implements OnInit, OnDestroy {
     this.customsService.unsubscribeFromContractEvent("TravelerDataProcessed", this.handleProcessedDataResult.bind(this));
   }
 
+  @HostListener('window:message', ['$event'])
+  onMessage(event: any) {
+    if (event.data.type === 'scan') {
+      this.toCity = new City(event.data.destinationCountry, event.data.destinationCity);
+      this.scanSuccessfull = true;
+    }
+  }
+
   getDepartureLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
@@ -55,8 +63,6 @@ export class CustomsComponent implements OnInit, OnDestroy {
       this.appConfigService.scanner.url,
       this.appConfigService.scanner.windowName,
       `width=${this.appConfigService.scanner.windowWidth},height=${this.appConfigService.scanner.windowHeight}`);
-    this.toCity = new City('Barcelona', 'Spain');
-    this.scanSuccessfull = true;
   }
 
   async initiateSecurityCheck() {

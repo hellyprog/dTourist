@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { TicketScannerRoutingModule } from './ticket-scanner-routing.module';
 import { TicketScannerComponent } from './ticket-scanner.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { TicketScannerComponent } from './ticket-scanner.component';
   ],
   imports: [
     CommonModule,
-    TicketScannerRoutingModule
+    TicketScannerRoutingModule,
+    FormsModule
   ]
 })
 export class TicketScannerModule { }
