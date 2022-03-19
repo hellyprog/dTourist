@@ -1,37 +1,30 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { AppConfig } from '@core/models/app-config.model';
 import { firstValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppConfigService {
-  private appConfig: any;
+  private appConfig!: AppConfig;
 
   constructor(private http: HttpClient) { }
 
   async loadAppConfig() {
-    const data = await firstValueFrom(this.http.get('/assets/config.json'));
+    const data = await firstValueFrom<AppConfig>(this.http.get<AppConfig>('/assets/config.json'));
     this.appConfig = data;
   }
 
-  get locationIqAPI() {
-    return this.appConfig.locationIqAPI;
+  get contract() {
+    return this.appConfig.contract;
   }
 
-  get locationIqKey() {
-    return this.appConfig.locationIqKey;
+  get locationApi() {
+    return this.appConfig.locationApi;
   }
 
-  get customsContractAddress() {
-    return this.appConfig.customsContractAddress;
-  }
-
-  get insuranceStoreContractAddress() {
-    return this.appConfig.insuranceStoreContractAddress;
-  }
-
-  get wsProvider() {
-    return this.appConfig.wsProvider;
+  get scanner() {
+    return this.appConfig.scanner;
   }
 }

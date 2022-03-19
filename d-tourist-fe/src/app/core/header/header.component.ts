@@ -28,12 +28,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
       await this.connectWallet();
     }
 
-    this.walletConnectorService.subscribeToWalletEvent('networkChanged',
+    this.walletConnectorService.subscribeToWalletEvent('chainChanged',
       this.walletConnectorService.ensureCorrectNetworkConnected.bind(this.walletConnectorService));
   }
 
   ngOnDestroy(): void {
-    this.walletConnectorService.subscribeToWalletEvent('networkChanged',
+    this.walletConnectorService.subscribeToWalletEvent('chainChanged',
       this.walletConnectorService.ensureCorrectNetworkConnected.bind(this.walletConnectorService));
   }
 

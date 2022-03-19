@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { City } from '@core/models';
-import { CustomsService, GeolocationService } from '@core/services';
+import { AppConfigService, CustomsService, GeolocationService } from '@core/services';
 import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
@@ -19,7 +19,8 @@ export class CustomsComponent implements OnInit, OnDestroy {
   constructor(
     private customsService: CustomsService,
     private geolocationService: GeolocationService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private appConfigService: AppConfigService
   ) {
     this.getDepartureLocation();
   }
@@ -50,7 +51,10 @@ export class CustomsComponent implements OnInit, OnDestroy {
   }
 
   scanTicket() {
-    window.open('http://localhost:4200/ticket-scanner', 'Ticker-Scanner', 'popup');
+    window.open(
+      this.appConfigService.scanner.url,
+      this.appConfigService.scanner.windowName,
+      `width=${this.appConfigService.scanner.windowWidth},height=${this.appConfigService.scanner.windowHeight}`);
     this.toCity = new City('Barcelona', 'Spain');
     this.scanSuccessfull = true;
   }

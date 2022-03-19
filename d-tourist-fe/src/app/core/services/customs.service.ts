@@ -19,8 +19,8 @@ export class CustomsService {
     private walletConnectorService: WalletConnectorService,
     private appConfigService: AppConfigService) {
     this.provider = new ethers.providers.Web3Provider(window.ethereum, 'any');
-    this.wsProvider = new ethers.providers.WebSocketProvider(this.appConfigService.wsProvider);
-    this.customsContract.address = this.appConfigService.customsContractAddress;
+    this.wsProvider = new ethers.providers.WebSocketProvider(this.appConfigService.contract.wsProvider);
+    this.customsContract.address = this.appConfigService.contract.customsContractAddress;
     this.customsContract.abi = CustomsAbi.abi;
   }
 

@@ -14,8 +14,8 @@ export class GeolocationService {
     private http: HttpClient) { }
 
   getCityInfoByCoordinates(latitude: number, longitude: number): Observable<PositionResponse> {
-    const url = this.appConfigService.locationIqAPI 
-      + `?key=${this.appConfigService.locationIqKey}&lat=${latitude}&lon=${longitude}&format=json&accept-language=en`;
+    const url = this.appConfigService.locationApi.locationIqApi 
+      + `?key=${this.appConfigService.locationApi.locationIqKey}&lat=${latitude}&lon=${longitude}&format=json&accept-language=en`;
     return this.http.get<PositionResponse>(url);
   }
 }

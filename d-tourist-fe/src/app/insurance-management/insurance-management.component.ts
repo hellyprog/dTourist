@@ -15,7 +15,7 @@ export class InsuranceManagementComponent implements OnInit {
     private appConfigService: AppConfigService,
     private insuranceService: InsuranceService
   ) {
-    this.contractAddress = this.appConfigService.insuranceStoreContractAddress;
+    this.contractAddress = this.appConfigService.contract.insuranceStoreContractAddress;
   }
 
   async ngOnInit() {

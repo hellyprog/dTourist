@@ -18,8 +18,8 @@ export class InsuranceService {
     private walletConnectorService: WalletConnectorService,
     private appConfigService: AppConfigService) {
       this.provider = new ethers.providers.Web3Provider(window.ethereum, 'any');
-      this.wsProvider = new ethers.providers.WebSocketProvider(this.appConfigService.wsProvider);
-      this.insuranceStoreContract.address = this.appConfigService.insuranceStoreContractAddress;
+      this.wsProvider = new ethers.providers.WebSocketProvider(this.appConfigService.contract.wsProvider);
+      this.insuranceStoreContract.address = this.appConfigService.contract.insuranceStoreContractAddress;
       this.insuranceStoreContract.abi = InsuranceStore.abi;
   }
 
@@ -35,7 +35,7 @@ export class InsuranceService {
   }
 
   async getContractBalance() {
-    return this.provider.getBalance(this.appConfigService.insuranceStoreContractAddress);
+    return this.provider.getBalance(this.appConfigService.contract.insuranceStoreContractAddress);
   }
 
   async withdrawBalance() {
