@@ -1,3 +1,10 @@
-<input type="text" [(ngModel)]="destinationCountry">
-<input type="text" [(ngModel)]="destinationCity">
-<button (click)="scanTicket()">Click</button>
+<div class="title">Scan your ticket</div>
+<div class="input-block">
+    <div class="text">Destination Country</div>
+    <input type="text" [(ngModel)]="destinationCountry" autofocus>
+</div>
+<div class="input-block">
+    <div class="text">Destination City</div>
+    <input type="text" [(ngModel)]="destinationCity">
+</div>
+<div class="scan-button" (click)="scanTicket()">Scan</div>
