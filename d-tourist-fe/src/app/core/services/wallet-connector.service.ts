@@ -15,11 +15,15 @@ export class WalletConnectorService {
     this.provider = new ethers.providers.Web3Provider(window.ethereum, 'any');
   }
 
-  async connectWallet(): Promise<string> {
-    await this.provider.send('eth_requestAccounts', []);
-    const signer = this.provider.getSigner();
+  async connectWallet(): Promise<string | null> {
+    try {
+      await this.provider.send('eth_requestAccounts', []);
+      const signer = this.provider.getSigner();
 
-    return signer.getAddress();
+      return signer.getAddress();
+    } catch (error) {
+      return null;
+    }
   }
 
   async getWalletAddress(): Promise<string> {
@@ -52,6 +56,11 @@ export class WalletConnectorService {
     }
 
     return true;
+  }
+
+  async switchNetworkToRinkeby() {
+    const chainId = '0x' + this.RINKEBY_NETWORK_ID.toString(16);
+    await this.provider.send('wallet_switchEthereumChain', [{ chainId }]);
   }
 
   subscribeToWalletEvent(eventName: string, callback: any) {

@@ -39,8 +39,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   async connectWallet() {
     const address = await this.walletConnectorService.connectWallet();
-    this.walletAddress = this.formatAddress(address);
-    await this.walletConnectorService.ensureCorrectNetworkConnected();
+   
+    if (address) {
+      this.walletAddress = this.formatAddress(address);
+      await this.walletConnectorService.ensureCorrectNetworkConnected();
+      await this.walletConnectorService.switchNetworkToRinkeby();
+    }
   }
 
   formatAddress(address: string): string {
