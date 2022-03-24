@@ -59,8 +59,12 @@ export class WalletConnectorService {
   }
 
   async switchNetworkToRinkeby() {
-    const chainId = '0x' + this.RINKEBY_NETWORK_ID.toString(16);
-    await this.provider.send('wallet_switchEthereumChain', [{ chainId }]);
+    try {
+      const chainId = '0x' + this.RINKEBY_NETWORK_ID.toString(16);
+      await this.provider.send('wallet_switchEthereumChain', [{ chainId }]);
+    } catch(error) {
+      
+    }
   }
 
   subscribeToWalletEvent(eventName: string, callback: any) {

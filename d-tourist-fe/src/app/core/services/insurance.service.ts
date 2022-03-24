@@ -66,7 +66,7 @@ export class InsuranceService {
       const contract = new ethers.Contract(this.insuranceStoreContract.address, this.insuranceStoreContract.abi, signer);
       const ownerAddress = contract['owner']();
       const currentAddress = await this.walletConnectorService.getWalletAddress();
-      return true;
+
       return ownerAddress === currentAddress;
     }
 

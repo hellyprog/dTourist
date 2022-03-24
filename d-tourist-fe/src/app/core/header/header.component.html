@@ -4,5 +4,5 @@
 <div class="connect-button" (click)="connectWallet()">
     <mat-icon>account_balance_wallet</mat-icon>
     <div *ngIf="!walletAddress">Connect Wallet</div>
-    <div *ngIf="walletAddress">{{walletAddress}}</div>
+    <div *ngIf="walletAddress" (click)="copyWalletAddress()" title="Click to copy address">{{walletAddress}}</div>
 </div>
