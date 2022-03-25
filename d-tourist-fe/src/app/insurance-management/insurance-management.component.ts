@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { AppConfigService, InsuranceService } from '@core/services';
 import { ethers } from 'ethers';
 
@@ -13,7 +14,8 @@ export class InsuranceManagementComponent implements OnInit {
 
   constructor(
     private appConfigService: AppConfigService,
-    private insuranceService: InsuranceService
+    private insuranceService: InsuranceService,
+    private snackBar: MatSnackBar
   ) {
     this.contractAddress = this.appConfigService.contract.insuranceStoreContractAddress;
   }
@@ -28,12 +30,18 @@ export class InsuranceManagementComponent implements OnInit {
   }
 
   copyContractAddress() {
+    const self = this;
+
     if (!navigator.clipboard) {
       return;
     }
 
     navigator.clipboard.writeText(this.contractAddress).then(function() {
-      console.log('Async: Copying to clipboard was successful!');
+      const snackBarText = 'Text is copied to clipboard.';
+      self.snackBar.open(snackBarText, 'Close', {
+        duration: 4000,
+        panelClass: ['snackbar-light']
+      });
     }, function(err) {
       console.error('Async: Could not copy text: ', err);
     });

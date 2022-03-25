@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { InsuranceManagementRoutingModule } from './insurance-management-routing.module';
 import { InsuranceManagementComponent } from './insurance-management.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { InsuranceManagementComponent } from './insurance-management.component';
   ],
   imports: [
     CommonModule,
-    InsuranceManagementRoutingModule
+    InsuranceManagementRoutingModule,
+    MatSnackBarModule
   ]
 })
 export class InsuranceManagementModule { }
